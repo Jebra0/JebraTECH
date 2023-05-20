@@ -1,0 +1,52 @@
+########### Start Date => (27-4-2023) AT FIRST I NEED FOLLOW A METHODE IN DEVELOP THAT PROJECT I THINK I'M GONNA CHOOSE agile MODEL IN DEVELOPING NO MATER WHAT MODEL ######################################################################################################################################################################
+    agile phases:				        # - in each iteration i'm gonna take one or more requirments and pass with it in all of those phases . 
+							# - The Contets : 
+1- CONCEPTION AND REQUIERMENTS .			# 
+  							# - Audionce :   
+2- DESIGN 						#
+   1. UML Design					# - text only or vedios and auios :
+      # class digram 					# - arabic and english :
+      # Sequence diagram				# - api or ordinary :
+ 							# - 
+   2. DataBase Design					# - Function Requirments : 
+							#   -> ADMIN view : -add meta data that apper when peple serch about blog . 
+   3. UI Design 					#		    -commints bage to manage it .
+							#		    -could i add vedio from youtupe on the bage beside the blog ?
+   4. Data Stracture Design 				#		    -controll who can see that blogs , updates it , delete it .
+							#		    -display the votes beside the blogs .
+   5. Error Handling Design 				#		    -display the latest blogs and the unvisible ones .
+							#		    -display the ADMIN blogs that need conferm .
+   6. Performance Design 				#		    -monitor the blogs : who read my blogs and from where 
+							#		    			 times of views to this blogs .
+   7. Security Design 					#		    			 time of reading the blog of that user .
+							#					 can i folow the post that the user shares that blog in it 
+3- CODING 						#					 SEO MATRICES .
+							#		    
+							#	      USER: -display the users , delete, upgrade , block from comminting . 
+							#		    -user can apply for contriputing in that blog .
+							#		    -user can chat with admin with messaging system .
+							#		    -gifts to the users : gives hem the ability to post one blog .
+							#		    -know the source that user came from to my site .
+							#
+							#	CATEGORIES :-display, add, apdates and delete 
+							#		    -assign those blogs to that tag .
+							#		    -the post can be in more onr tag
+							#		    
+							#          CONTACT :-Befor the user go to chat he must choose the topic he will ask about .
+							#		    -upon that topics i can organize the periority of responce .
+							#		    
+							#
+							#           COMMENTS:-Delete it and and notificates the user that he will block .
+							#
+							#	        NEWS:-Add, show, update and delte 
+							#		     -apper or dissapper 
+							#		     -commints on it 
+							###############################################################################################
+							#   -> USER view : -
+							#
+							#
+							#
+							#
+							#
+							#
+							#
