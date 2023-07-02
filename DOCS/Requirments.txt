@@ -15,16 +15,17 @@
    4. Data Stracture Design 				#		    -controll who can see that blogs , updates it , delete it .
 							#		    -display the votes beside the blogs .
    5. Error Handling Design 				#		    -display the latest blogs and the unvisible ones .
-							#		    -display the ADMIN blogs that need conferm .
+							#		 #  -display the ADMIN blogs that need conferm . ++++ { scheduling The Posts }
+							#		 #  -Business Case: there is Reader User and Writer User to be Writer should bay for it .
    6. Performance Design 				#		    -monitor the blogs : who read my blogs and from where 
 							#		    			 times of views to this blogs .
    7. Security Design 					#		    			 time of reading the blog of that user .
 							#					 can i folow the post that the user shares that blog in it 
 3- CODING 						#					 SEO MATRICES .
-							#		    
-							#	      USER: -display the users , delete, upgrade , block from comminting . 
-							#		    -user can apply for contriputing in that blog .
-							#		    -user can chat with admin with messaging system .
+#########################################################		    
+		   	 				#	      USER: -display the users , delete, upgrade , block from comminting . 
+ 							#		    -user can apply for contriputing in that blog .
+   							#		    -user can chat with admin with messaging system .
 							#		    -gifts to the users : gives hem the ability to post one blog .
 							#		    -know the source that user came from to my site .
 							#
@@ -42,11 +43,147 @@
 							#		     -apper or dissapper 
 							#		     -commints on it 
 							###############################################################################################
-							#   -> USER view : -
-							#
-							#
-							#
-							#
-							#
-							#
-							#
+							#   -> USER view :
+###########################################################################################################################################################
+     		$ the database $
+1.BLOGS /
+  Id
+  blog_title (varchar(255))
+  body       (text)        //this Data Type for long string and count the size of data inside it 
+  discription (varchar(500))
+  Is_Hadden (bool)
+  soft delete (date)
+  
+  
+
+=====> EVENT in the Database to Schadualing the post .
+=====> EVENT if the number of user_rebort on the writer become 10 change it to reader user not writer.
+
+
+2.Read_By /
+
+3.USER /
+  Is_writer (bool)
+  Name
+  Id
+  Gender
+  Email
+  Email_varified_at
+  Photo
+  Password
+  About
+  Remember_token
+  Updated_at
+  Created_at
+
+  
+  
+
+4.User_Rebort /
+
+5. User_Block /
+
+6.ADMIN /
+  Type (int) 500 -> system complains // 501 -> server complain ... ETC
+  Name
+  Id
+  Gender
+  Email
+  Photo
+  Password
+  Updated_at
+  Created_at
+  is_active
+  last_login_at
+
+7.COMMENTS /
+  Id
+  Content
+  created_at
+  updated_at
+  soft_delete
+  
+
+8.Like /
+
+9.Share /
+
+10.REPLY /
+   Id
+   content
+   created_at
+   updated_at
+   soft_delete
+
+11.media_attachments => IMAGES or vedios  /
+  Id
+  is_image (bool)
+  url
+  caption
+  created_at
+  updated_at
+
+12.CATEGORIES /
+  Id
+  Name
+  slug  => A unique identifier or URL-friendly version of the category name, used for generating SEO-friendly URLs. 
+  created_at
+  updated_at
+
+13.NEWS /
+  Id
+  News_title (varchar(255))
+  body       (text)        //this Data Type for long string and count the size of data inside it 
+  discription (varchar(500))
+  Is_Viable (bool)
+  soft delete (date)
+  image_url 
+  created_at
+  updated_at
+
+////9.VOTES / we do not need this becouse we cane vote the post from like or share .
+
+14.TAGS /
+
+15.TAGS_TABLE /
+
+16.Chates /
+  id
+  user1_id
+  user2_id
+  created_at
+  updated_at
+
+17.Messages / 
+  id
+  chat_id
+  sender_id
+  content
+  created_at
+  updated_at
+
+  
+18.Follow /
+  id
+  follower_id
+  followed_id
+  created_at
+  
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
