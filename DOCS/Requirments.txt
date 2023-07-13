@@ -1,4 +1,4 @@
-########### Start Date => (27-4-2023) AT FIRST I NEED FOLLOW A METHODE IN DEVELOP THAT PROJECT I THINK I'M GONNA CHOOSE agile MODEL IN DEVELOPING NO MATER WHAT MODEL ######################################################################################################################################################################
+	########### Start Date => (27-4-2023) AT FIRST I NEED FOLLOW A METHODE IN DEVELOP THAT PROJECT I THINK I'M GONNA CHOOSE agile MODEL IN DEVELOPING NO MATER WHAT MODEL ######################################################################################################################################################################
     agile phases:				        # - in each iteration i'm gonna take one or more requirments and pass with it in all of those phases . 
 							# - The Contets : 
 1- CONCEPTION AND REQUIERMENTS .			# 
@@ -54,34 +54,11 @@
   Is_Hadden (bool)
   soft delete (date)
   
-  
-
-=====> EVENT in the Database to Schadualing the post .
-=====> EVENT if the number of user_rebort on the writer become 10 change it to reader user not writer.
-
-
-2.Read_By /
-
 3.USER /
   Is_writer (bool)
-  Name
-  Id
-  Gender
-  Email
-  Email_varified_at
-  Photo
-  Password
-  About
-  Remember_token
-  Updated_at
-  Created_at
-
-  
-  
-
-4.User_Rebort /
-
-5. User_Block /
+  Gender (varchar(255))
+  Photo (varchar(255))
+  Abou  (varchar(255))
 
 6.ADMIN /
   Type (int) 500 -> system complains // 501 -> server complain ... ETC
@@ -96,17 +73,13 @@
   is_active
   last_login_at
 
+
 7.COMMENTS /
   Id
   Content
   created_at
   updated_at
   soft_delete
-  
-
-8.Like /
-
-9.Share /
 
 10.REPLY /
    Id
@@ -115,7 +88,8 @@
    updated_at
    soft_delete
 
-11.media_attachments => IMAGES or vedios  /
+
+11.media => IMAGES or vedios  /
   Id
   is_image (bool)
   url
@@ -141,11 +115,6 @@
   created_at
   updated_at
 
-////9.VOTES / we do not need this becouse we cane vote the post from like or share .
-
-14.TAGS /
-
-15.TAGS_TABLE /
 
 16.Chates /
   id
@@ -157,19 +126,37 @@
 17.Messages / 
   id
   chat_id
-  sender_id
+  sender_id 
   content
   created_at
   updated_at
 
-  
+
 18.Follow /
   id
   follower_id
   followed_id
   created_at
   
-   
+2.Read_By /
+
+4.User_Rebort /
+
+5. User_Block /
+
+8.Like /
+
+9.Share /
+
+14.TAGS /
+
+15.TAGS_TABLE	
+
+=====> EVENT in the Database to Schadualing the post .
+=====> EVENT if the number of user_rebort on the writer become 10 change it to reader user not write
+
+ 
+
 
 
 
