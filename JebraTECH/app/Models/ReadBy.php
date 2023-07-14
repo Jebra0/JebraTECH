@@ -9,6 +9,8 @@ use Laravel\Sanctum\HasApiTokens;
 
 class ReadBy extends Model
 {
+    protected $table = 'read_by';
+
     use HasApiTokens, HasFactory, Notifiable;
     protected $fillable = [
         'user_id',
@@ -22,4 +24,6 @@ class ReadBy extends Model
     public function user(){
         return $this->hasMany(User::class, 'user_id');
     }
+
+    public $timestamps = false;
 }

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class Tags extends Model
+class Tag extends Model
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -18,4 +18,7 @@ class Tags extends Model
     public function tags(){
         return $this->hasMany(BlogTag::class, 'blog_id');
     }
+
+    public $timestamps = false;
+
 }

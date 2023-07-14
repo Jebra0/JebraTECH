@@ -12,7 +12,7 @@ class Follow extends Model
     use HasApiTokens, HasFactory, Notifiable;
     protected $fillable = [
         'follower_id',
-        'followed_id '
+        'followed_id'
     ];
 
     public function user_follow(){
@@ -21,4 +21,7 @@ class Follow extends Model
 
     public function writer_follow(){
         return $this->belongsTo(User::class, 'followed_id ');
-    }}
+    }
+
+    public $timestamps = false;
+}

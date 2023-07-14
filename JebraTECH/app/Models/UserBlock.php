@@ -22,4 +22,7 @@ class UserBlock extends Model
     public function writer_blocks(){
         return $this->belongsTo(User::class, 'user_blocked_id');
     }
+
+    public $timestamps = false;
+
 }

@@ -34,16 +34,16 @@ class User extends Authenticatable
     }
 
     public function shares(){
-            return $this-> hasMany();
+            return $this-> hasMany(Share::class, 'user_id');
     }
     public function likes(){
-        return $this-> hasMany();
+        return $this-> hasMany(Like::class, 'user_id');
     }
     public function comments(){
-        return $this-> hasMany();
+        return $this-> hasMany(Comment::class, 'user_id');
     }
     public function reborts(){
-        return $this-> hasMany();
+        return $this-> hasMany(UserReport::class, 'user_id');
     }
     public function reads(){
         return $this-> hasMany(ReadBy::class, 'user_id');

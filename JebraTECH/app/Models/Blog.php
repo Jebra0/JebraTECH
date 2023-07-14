@@ -29,16 +29,16 @@ class Blog extends Model
     }
 
     public function shares(){
-        return $this-> hasMany();
+        return $this-> hasMany(Share::class, 'blog_id');
     }
     public function likes(){
-        return $this-> hasMany();
+        return $this-> hasMany(Like::class, 'blog_id');
     }
     public function comments(){
-        return $this-> hasMany();
+        return $this-> hasMany(Comment::class, 'blog_id');
     }
     public function reborts(){
-        return $this-> hasMany();
+        return $this-> hasMany(UserReport::class, 'blog_id');
     }
     public function reads(){
         return $this-> hasMany(ReadBy::class, 'blog_id');
