@@ -4,13 +4,13 @@
 1- CONCEPTION AND REQUIERMENTS .			# 
   							# - Audionce :   
 2- DESIGN 						#
-   1. UML Design					# - text only or vedios and auios :
+   1. UML Design					# - text only or vedios and auios : youtupe vedio link + photo 
       # class digram 					# - arabic and english :
-      # Sequence diagram				# - api or ordinary :
+      # Sequence diagram				# - api or ordinary : GraphQl API 
  							# - 
    2. DataBase Design					# - Function Requirments : 
 							#   -> ADMIN view : -add meta data that apper when peple serch about blog . 
-   3. UI Design 					#		    -commints bage to manage it .
+   3. UI Design 					#		    -comments bage to manage it .
 							#		    -could i add vedio from youtupe on the bage beside the blog ?
    4. Data Stracture Design 				#		    -controll who can see that blogs , updates it , delete it .
 							#		    -display the votes beside the blogs .

@@ -1,20 +1,14 @@
+#import User.graphql
+#import Admin.graphql
 
-type Query {
-    user(id: ID @eq): User @find
+scalar DateTime @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
 
-    users: [User] @paginate
-}
+type Query
 
 type Mutation {
-    Login(name: String!, password: String!): String
-}
+    Login(email: String!, password: String!, role: String!): String #role to determine if it 'admin' or 'user'
+    Logout(id: ID @eq, role: String!): User! @guard
 
-type User {
-    id: ID!
-    name: String!
-    email: String!
-    is_writer: Boolean!
-    gender: Boolean
-    photo: String
-    about: String
+    Logout(id: ID @eq, role: String!): Admin! @guard
+
 }

@@ -1,0 +1,22 @@
+
+extend type Query {
+    admin(
+        id: ID @eq @rules(apply: ["prohibits:email", "required_without:email"])
+    ): Admin @find
+
+    Admins(
+        name: String @where(operator: "like")
+    ): [Admin!]! @paginate(defaultCount: 10)
+
+     myADMIN(id: ID @eq): Admin! @find
+
+}
+
+ type Admin {
+    id: ID!
+    name: String!
+    email: String!
+    created_at: DateTime!
+    updated_at: DateTime!
+    password: String
+}
