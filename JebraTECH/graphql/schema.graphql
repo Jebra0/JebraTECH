@@ -11,6 +11,11 @@
 #import Reply.graphql
 #import UserReport.graphql
 #import ReadBy.graphql
+#import UserBlock.graphql
+#import Follow.graphql
+#import Chate.graphql
+#import Message.graphql
+#import News.graphql
 
 scalar DateTime @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
 

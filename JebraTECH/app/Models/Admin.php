@@ -25,8 +25,8 @@ class Admin extends Model
     protected $casts = [
         'password' => 'hashed',
     ];
-    public function chate(){
-        return $this->belongsTo(Chate::class, 'admin_id');
+    public function chates(){
+        return $this->hasMany(Chate::class, 'admin_id');
     }
 
     public function news(){

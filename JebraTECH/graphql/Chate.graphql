@@ -1,4 +1,15 @@
 extend type Query {
-
+    chate(id: ID @eq): Chate! @find
 }
 
+type Chate {
+    id: ID!
+    admin_id: Int!
+    user_id: Int
+    created_at: DateTime!
+    updated_at: DateTime!
+
+    user: User! @belongsTo
+    admin: Admin! @belongsTo
+    messages: [Message]! @hasMany
+}

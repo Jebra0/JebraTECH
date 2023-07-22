@@ -1,4 +1,10 @@
-extend type Query {
+type Message {
+    id: ID!
+    chate_id: Int!
+    sender_id: Int!
+    content: String!
+    created_at: DateTime!
+    updated_at: DateTime!
 
+    chate: Chate! @belongsTo
 }
-

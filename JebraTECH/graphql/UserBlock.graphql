@@ -4,7 +4,6 @@ type UserBlock {
     user_blocked_id: Int!
     created_at: DateTime!
 
-    user_block: [User]! @hasMany
-
+    blocks: [User]! @belongsToMany
 }
 

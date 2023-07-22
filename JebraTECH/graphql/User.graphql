@@ -35,5 +35,8 @@ type User {
     comments: [Comment]! @hasMany
     reborts: [UserReport]! @hasMany
     reads: [ReadBy]! @hasMany
+    user_blocks: [UserBlock]! @hasMany
+    user_follows: [Follow]! @hasMany
+    chate: Chate! @hasOne
 
 }

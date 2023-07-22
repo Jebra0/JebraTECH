@@ -1,0 +1,9 @@
+type Follow {
+    id: ID!
+    follower_id: Int!
+    followed_id: Int!
+    created_at: DateTime!
+
+    follows: [User]! @belongsToMany
+}
+

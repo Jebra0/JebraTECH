@@ -14,12 +14,8 @@ class UserBlock extends Model
         'user_blocked_id'
     ];
 
-    public function user_block(){
-        return $this->belongsTo(User::class, 'user_id');
-    }
-
-    public function writer_blocks(){
-        return $this->belongsTo(User::class, 'user_blocked_id');
+    public function blocks(){
+        return $this->belongsToMany(User::class, 'UserBlock', 'user_id', 'user_blocked_id');
     }
 
     public $timestamps = false;

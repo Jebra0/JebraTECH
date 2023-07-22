@@ -19,7 +19,7 @@ class Chate extends Model
     }
 
     public function admin(){
-        return $this->hasMany(Chate::class, 'admin_id');
+        return $this->belongsTo(Chate::class, 'admin_id');
     }
 
     public function messages(){

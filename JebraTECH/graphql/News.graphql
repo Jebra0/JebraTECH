@@ -1,4 +1,12 @@
-extend type Query {
+type News{
+    id: ID!
+    title: String!
+    body: String!
+    discription: String!
+    is_visible: Boolean
+    image_url: String
+    admin_id: Int!
 
+    admin: Admin! @belongsTo
 }
 

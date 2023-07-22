@@ -14,12 +14,8 @@ class Follow extends Model
         'followed_id'
     ];
 
-    public function user_follow(){
-        return $this->belongsTo(User::class, 'follower_id ');
-    }
-
-    public function writer_follow(){
-        return $this->belongsTo(User::class, 'followed_id ');
+    public function follows(){
+        return $this->belongsToMany(User::class, 'Follow', 'follower_id', 'followed_id');
     }
 
     public $timestamps = false;

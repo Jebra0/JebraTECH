@@ -49,27 +49,11 @@ class User extends Authenticatable
         return $this-> hasMany(ReadBy::class, 'user_id');
     }
 
-//////////// please check this relations in blocks good
-
-//    public function blocks(){
-//        return $this->belongsToMany(UserBlock::class, 'role_user', 'user_id', 'role_id');
-//    }
-
     public  function user_blocks(){
         return $this->hasMany(UserBlock::class, 'user_id' );
     }
-    public  function writer_blocks(){
-            return $this->hasMany(UserBlock::class, 'user_blocked_id' );
-    }
-
-
-//////////// please check this relations in follows good
 
     public  function user_follows(){
         return $this->hasMany(Follow::class, 'follower_id' );
     }
-    public  function writer_follows(){
-            return $this->hasMany(Follow::class, 'followed_id' );
-    }
-
 }
