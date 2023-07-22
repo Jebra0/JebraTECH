@@ -34,7 +34,7 @@ class User extends Authenticatable
     }
 
     public function shares(){
-            return $this-> hasMany(Share::class, 'user_id');
+        return $this-> hasMany(Share::class, 'user_id');
     }
     public function likes(){
         return $this-> hasMany(Like::class, 'user_id');
@@ -50,6 +50,10 @@ class User extends Authenticatable
     }
 
 //////////// please check this relations in blocks good
+
+//    public function blocks(){
+//        return $this->belongsToMany(UserBlock::class, 'role_user', 'user_id', 'role_id');
+//    }
 
     public  function user_blocks(){
         return $this->hasMany(UserBlock::class, 'user_id' );

@@ -1,0 +1,10 @@
+type Like {
+    id: ID!
+    user_id: Int!
+    blog_id: Int!
+    created_at: DateTime
+
+    blog: Blog! @belongsTo
+    user: [User]! @hasMany
+}
+

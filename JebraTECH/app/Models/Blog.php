@@ -20,8 +20,8 @@ class Blog extends Model
         return $this->belongsTo(Category::class, 'category_id');
     }
 
-    public function tags(){
-        return $this-> hasMany(BlogTag::class, 'tag_id');
+    public function blogtags(){
+        return $this-> hasMany(BlogTag::class, 'blog_id');
     }
 
     public function media(){
@@ -29,7 +29,7 @@ class Blog extends Model
     }
 
     public function shares(){
-        return $this-> hasMany(Share::class, 'blog_id');
+        return $this->hasMany(Share::class, 'blog_id');
     }
     public function likes(){
         return $this-> hasMany(Like::class, 'blog_id');

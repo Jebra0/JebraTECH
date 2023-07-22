@@ -1,0 +1,10 @@
+type Reply{
+    id: ID!
+    content: String!
+    comment_id: Int!
+    created_at: DateTime!
+    updated_at: DateTime!
+
+    comment: Comment! @belongsTo
+
+}

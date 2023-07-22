@@ -14,8 +14,8 @@ class Tag extends Model
         'name',
     ];
 
-    public function tags(){
-        return $this->hasMany(BlogTag::class, 'blog_id');
+    public function tageblogtags(){
+        return $this->hasMany(BlogTag::class, 'tag_id');
     }
 
     public $timestamps = false;

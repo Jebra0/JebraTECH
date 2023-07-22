@@ -1,4 +1,25 @@
 extend type Query {
-
+  blog(id: ID @eq): Blog! @find
 }
 
+type Blog {
+    id: ID!
+    title: String!
+    body: String!
+    description: String!
+    category_id: Int!
+    created_at: DateTime!
+    updated_at: DateTime!
+
+    category: Category! @belongsTo
+    blogtags: [BlogTag] @hasMany
+    media: [Media]! @hasMany
+    shares: [Share]! @hasMany
+    likes: [Like]! @hasMany
+    comments: [Comment]! @hasMany
+    reborts: [UserReport]! @hasMany
+    reads: [ReadBy]! @hasMany
+
+
+
+}

@@ -1,4 +1,11 @@
-extend type Query {
 
+
+type Category {
+    id: ID!
+    name: String!
+    created_at: DateTime!
+    updated_at: DateTime!
+
+    blogs: [Blog!]! @hasMany
 }
 

@@ -1,0 +1,9 @@
+
+
+type BlogTag {
+    blog_id: Int!
+    tag_id: Int!
+
+    blog: Blog! @belongsTo
+    tag: Tag! @belongsTo
+}

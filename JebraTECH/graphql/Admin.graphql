@@ -1,4 +1,3 @@
-
 extend type Query {
     admin(
         id: ID @eq @rules(apply: ["prohibits:email", "required_without:email"])
@@ -11,6 +10,7 @@ extend type Query {
      myADMIN(id: ID @eq): Admin! @find
 
 }
+
 
  type Admin {
     id: ID!

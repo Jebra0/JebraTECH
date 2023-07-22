@@ -1,4 +1,15 @@
 extend type Query {
-
+    comment(id: ID @eq): Comment! @find
 }
+type Comment{
+    id: ID!
+    content: String!
+    user_id: Int!
+    blog_id: Int!
+    created_at: DateTime!
+    updated_at: DateTime!
 
+    blog: Blog! @belongsTo
+    user: [User]! @hasMany
+    replies: [Reply]! @hasMany
+}

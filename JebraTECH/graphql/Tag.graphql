@@ -1,4 +1,8 @@
-extend type Query {
 
+
+type Tag {
+    id: ID!
+    name: String!
+
+    tageblogtags: [BlogTag!]! @hasMany
 }
-

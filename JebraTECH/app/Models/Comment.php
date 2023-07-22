@@ -27,6 +27,4 @@ class Comment extends Model
         return $this->hasMany(Reply::class, 'comment_id');
     }
 
-    public $timestamps = false;
-
 }

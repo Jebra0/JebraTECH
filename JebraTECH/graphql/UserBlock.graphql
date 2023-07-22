@@ -1,0 +1,10 @@
+type UserBlock {
+    id: ID!
+    user_id: Int!
+    user_blocked_id: Int!
+    created_at: DateTime!
+
+    user_block: [User]! @hasMany
+
+}
+

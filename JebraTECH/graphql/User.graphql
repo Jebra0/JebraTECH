@@ -14,8 +14,10 @@ extend type Query {
 
 extend type Mutation {
     createUser(
-        name: String! @rules(apply: ["required"] ["min:10", "max:100"])
-    ): User!
+        name: String! @rules(apply: ["required", "min:10", "max:100"]),
+        email: String! @rules(apply: ["email"]),
+        password: String @rules(apply: ["min:8", "max:100"])
+    ): User! @create
 }
 
 type User {
@@ -28,5 +30,10 @@ type User {
     password: String
     is_writer: Boolean
 
+    shares: [Share]! @hasMany
+    likes: [Like]! @hasMany
+    comments: [Comment]! @hasMany
+    reborts: [UserReport]! @hasMany
+    reads: [ReadBy]! @hasMany
 
 }

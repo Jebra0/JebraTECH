@@ -13,7 +13,7 @@
    3. UI Design 					#		    -comments bage to manage it .
 							#		    -could i add vedio from youtupe on the bage beside the blog ?
    4. Data Stracture Design 				#		    -controll who can see that blogs , updates it , delete it .
-							#		    -display the votes beside the blogs .
+							#		    -
    5. Error Handling Design 				#		    -display the latest blogs and the unvisible ones .
 							#		 #  -display the ADMIN blogs that need conferm . ++++ { scheduling The Posts }
 							#		 #  -Business Case: there is Reader User and Writer User to be Writer should bay for it .
