@@ -1,5 +1,8 @@
 extend type Query {
     comment(id: ID @eq): Comment! @find
+    comments: [Comment!]! @paginate(defaultCount: 10)
+    LatestComments(count: Int!): [Comment!]!
+    TimeOfComments(date1: DateTime, date2: DateTime): [Comment!]!
 }
 type Comment{
     id: ID!
