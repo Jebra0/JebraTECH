@@ -1,5 +1,6 @@
 extend type Query {
-  blog(id: ID @eq): Blog! @find
+  blog(id: ID @eq): Blog! @find   #$id = $args['id'];   return Blog::withCount('comments')->findOrFail($id);
+
 }
 
 type Blog {

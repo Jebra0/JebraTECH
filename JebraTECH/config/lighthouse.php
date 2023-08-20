@@ -158,8 +158,15 @@ return [
 
     'namespaces' => [
         'models' => ['App', 'App\\Models'],
-        'queries' => 'App\\GraphQL\\Queries',
-        'mutations' => 'App\\GraphQL\\Mutations',
+        'queries' => [
+            'App\\GraphQL\\Queries',
+            'App\\GraphQL\\Queries\\Comments',
+
+        ],
+        'mutations' => [
+            'App\\GraphQL\\Mutations',
+            'App\\GraphQL\\Mutations\\Comments',
+        ],
         'subscriptions' => 'App\\GraphQL\\Subscriptions',
         'types' => 'App\\GraphQL\\Types',
         'interfaces' => 'App\\GraphQL\\Interfaces',

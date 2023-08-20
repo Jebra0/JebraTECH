@@ -72,6 +72,15 @@ type AdminPaginator {
   data: [Admin!]!
 }
 
+"A paginated list of Comment items."
+type CommentPaginator {
+  "Pagination information about the list of items."
+  paginatorInfo: PaginatorInfo!
+
+  "A list of Comment items."
+  data: [Comment!]!
+}
+
 "Directions for ordering a list of records."
 enum SortOrder {
   "Sort records in ascending order."

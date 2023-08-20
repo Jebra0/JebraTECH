@@ -1,9 +1,19 @@
 extend type Query {
-    
+
     comment(id: ID @eq): Comment! @find
     comments: [Comment!]! @paginate(defaultCount: 10)
     LatestComments(count: Int!): [Comment!]!
     TimeOfComments(date1: DateTime, date2: DateTime): [Comment!]! # get the comments with time
+    BlogComments(id:ID!):[Comment!]
+    UserComments(id: ID!):[Comment!]
+}
+extend type Mutation {
+    createComment(
+        content: String! @rules(apply: ["required",  "string", "max:500"]) #strip_tags => HTML Sanitization
+        user_id: Int!
+        blog_id: Int!
+    ): Comment
+
 
 }
 type Comment{
