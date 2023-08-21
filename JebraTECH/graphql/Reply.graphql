@@ -1,10 +1,30 @@
+extend type Query {
+    Reply(id: ID @eq): Reply! @find
+}
+
+extend type Mutation {
+    AddReply(
+        content: String! @rules(apply: ["required",  "string", "max:500"])
+        comment_id: Int!
+        user_id: Int!
+    ): Reply
+
+    UpdateReply(
+        id: ID!
+        content: String! @rules(apply: ["required",  "string", "max:500"])
+    ): Reply
+
+    DeleteReply(id: ID!): Reply
+}
+
 type Reply{
     id: ID!
     content: String!
     comment_id: Int!
+    user_id: Int!
     created_at: DateTime!
     updated_at: DateTime!
 
     comment: Comment! @belongsTo
-
+    user: User! @belongsTo
 }

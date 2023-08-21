@@ -33,6 +33,7 @@ type User {
     shares: [Share]! @hasMany
     likes: [Like]! @hasMany
     comments: [Comment]! @hasMany
+    replies: [Reply]! @hasMany
     reborts: [UserReport]! @hasMany
     reads: [ReadBy]! @hasMany
     user_blocks: [UserBlock]! @hasMany

@@ -161,11 +161,14 @@ return [
         'queries' => [
             'App\\GraphQL\\Queries',
             'App\\GraphQL\\Queries\\Comments',
+            'App\\GraphQL\\Mutations\\Blogs',
 
         ],
         'mutations' => [
             'App\\GraphQL\\Mutations',
             'App\\GraphQL\\Mutations\\Comments',
+            'App\\GraphQL\\Mutations\\Replies',
+            'App\\GraphQL\\Mutations\\Blogs',
         ],
         'subscriptions' => 'App\\GraphQL\\Subscriptions',
         'types' => 'App\\GraphQL\\Types',

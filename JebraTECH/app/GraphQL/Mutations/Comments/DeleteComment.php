@@ -4,7 +4,7 @@ namespace App\GraphQL\Mutations\Comments;
 
 use App\Models\Comment;
 
-final class UpdateComment
+final class DeleteComment
 {
     public function __invoke($_, array $args)
     {
@@ -12,10 +12,6 @@ final class UpdateComment
 
         $comment = Comment::find($id);
 
-        $comment->content = $args['content'];
-
-        $comment->save();
-
-        return $comment;
+        $comment->delete();
     }
 }
