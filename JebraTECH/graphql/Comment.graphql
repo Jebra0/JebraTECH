@@ -10,7 +10,7 @@ extend type Query {
 }
 extend type Mutation {
     createComment(
-        content: String! @rules(apply: ["required",  "string", "max:500"])
+        content: String! @rules(apply: ["required", "string", "max:500"])
         user_id: Int!
         blog_id: Int!
     ): Comment

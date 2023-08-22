@@ -20,6 +20,10 @@ class Blog extends Model
         return $this->belongsTo(Category::class, 'category_id');
     }
 
+    public function writter(){
+        return $this->belongsTo(User::class, 'writter_id');
+    }
+
     public function blogtags(){
         return $this-> hasMany(BlogTag::class, 'blog_id');
     }

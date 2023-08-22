@@ -1,5 +1,6 @@
 <?php declare(strict_types=1);
 
+
 return [
     /*
     |--------------------------------------------------------------------------
@@ -161,8 +162,7 @@ return [
         'queries' => [
             'App\\GraphQL\\Queries',
             'App\\GraphQL\\Queries\\Comments',
-            'App\\GraphQL\\Mutations\\Blogs',
-
+            'App\\GraphQL\\Queries\\Blogs',
         ],
         'mutations' => [
             'App\\GraphQL\\Mutations',

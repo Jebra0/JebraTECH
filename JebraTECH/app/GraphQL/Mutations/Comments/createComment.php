@@ -8,6 +8,7 @@ final class createComment
 {
     public function __invoke($_, array $args)
     {
+
         $comment = new Comment();
         $comment->content = $args['content'];
         $comment->user_id = $args['user_id'];

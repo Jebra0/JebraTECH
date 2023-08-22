@@ -53,6 +53,10 @@ class User extends Authenticatable
         return $this-> hasMany(ReadBy::class, 'user_id');
     }
 
+    public function write(){
+        return $this->hasMany(Blog::class, 'writter_id');
+    }
+
     public  function user_blocks(){
         return $this->hasMany(UserBlock::class, 'user_id' );
     }
