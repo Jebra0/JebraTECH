@@ -1,8 +1,10 @@
 extend type Query {
     blog(id: ID @eq): Blog! @find
     blogs: [Blog!]! @paginate(defaultCount: 10)
-    GetPopoularBlog:[Blog!] #@paginate(defaultCount: 10) # most <read , <share , <like , <comment
+    #GetPopoularBlog:[Blog!] #@paginate(defaultCount: 10) # most <read , <share , <like , <comment
+    GetPopoularBlog(first: Int!, page: Int!): [Blog!]! @paginate(builder: "App\\GraphQL\\Queries\\Blogs\\GetPopoularBlog")
     GetBlogsWithTime(date1: DateTime, date2: DateTime): [Blog!]!
+
 }
 
 type Blog {
