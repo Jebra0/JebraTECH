@@ -4,7 +4,26 @@ extend type Query {
     #GetPopoularBlog:[Blog!] #@paginate(defaultCount: 10) # most <read , <share , <like , <comment
     GetPopoularBlog(first: Int!, page: Int!): [Blog!]! @paginate(builder: "App\\GraphQL\\Queries\\Blogs\\GetPopoularBlog")
     GetBlogsWithTime(date1: DateTime, date2: DateTime): [Blog!]!
+}
 
+extend type Mutation {
+    CreatBlog(
+        title: String! @rules(apply: ["required", "string", "max:250"])
+        body: String! @rules(apply: ["required", "string"])
+        description: String! @rules(apply: ["required", "string", "max:500"])
+        is_hidden: Boolean
+        category_id: Int!  @rules(apply: ["required", "exists:categories,id"])
+        writter_id: Int! @rules(apply: ["required", "exists:users,id"])
+    ): Blog!
+
+    UpdateBlog(
+        id: Int!
+        title: String! @rules(apply: ["required", "string", "max:250"])
+        body: String! @rules(apply: ["required", "string"])
+        description: String! @rules(apply: ["required", "string", "max:500"])
+        is_hidden: Boolean
+        category_id: Int!  @rules(apply: ["required", "exists:categories,id"])
+    ): Blog!
 }
 
 type Blog {
@@ -12,7 +31,9 @@ type Blog {
     title: String!
     body: String!
     description: String!
+    is_hidden: Int
     category_id: Int!
+    writter_id: Int!
     created_at: DateTime!
     updated_at: DateTime!
 

@@ -10,9 +10,11 @@ final class createComment
     {
 
         $comment = new Comment();
+
         $comment->content = $args['content'];
         $comment->user_id = $args['user_id'];
         $comment->blog_id = $args['blog_id'];
+
         $comment->save();
 
         return $comment;

@@ -15,6 +15,7 @@ class Blog extends Model
         'description',
         'is_hidden',
         'category_id',
+        'writter_id',
     ];
     public function category(){
         return $this->belongsTo(Category::class, 'category_id');
