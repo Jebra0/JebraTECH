@@ -4,11 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 class Blog extends Model
 {
     use HasApiTokens, HasFactory, Notifiable;
+    use SoftDeletes;
+
     protected $fillable = [
         'title',
         'body',
@@ -48,4 +51,38 @@ class Blog extends Model
     public function reads(){
         return $this-> hasMany(ReadBy::class, 'blog_id');
     }
+
+    public function delete()
+    {
+   // Soft delete related tables because i can not use ->onDelete('cascade') because i do not have migration files
+        $this->comments()->delete();
+//        $this->comments()->each(function ($comment) {
+//            $comment->delete(); // Soft delete related comments
+//        });
+        $this->media()->delete();
+        $this->blogtags()->delete();
+        $this->shares()->delete();
+        $this->likes()->delete();
+        $this->reborts()->delete();
+        $this->reads()->delete();
+
+        // Perform the soft delete on the blog itself
+        return parent::delete();
+    }
+
+    public function restore()
+    {
+        parent::restore(); // Perform the restore on the blog itself
+
+        $this->comments()->withTrashed()->restore(); // Restore related comments
+
+//        $this->media()->restore();
+//        $this->blogtags()->restore();
+//        $this->shares()->restore();
+//        $this->likes()->restore();
+//        $this->reborts()->restore();
+//        $this->reads()->restore();
+
+    }
+
 }

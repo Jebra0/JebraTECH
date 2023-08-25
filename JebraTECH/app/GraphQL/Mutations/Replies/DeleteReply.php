@@ -13,7 +13,7 @@ final class DeleteReply
         $id = $args['id'];
 
         $reply = Reply::find($id);
-        if($reply){
+        if($reply && $reply->deleted_at === NULL){
             $reply->delete();
         }else{
             throw ValidationException::withMessages([

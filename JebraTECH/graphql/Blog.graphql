@@ -24,6 +24,10 @@ extend type Mutation {
         is_hidden: Boolean
         category_id: Int!  @rules(apply: ["required", "exists:categories,id"])
     ): Blog!
+
+    DeleteBlog(id: Int! @rules(apply: ["required", "exists:blogs,id"])): Blog!
+
+    RestorBlog(id: Int! @rules(apply: ["required", "exists:blogs,id"])): Blog!
 }
 
 type Blog {

@@ -37,10 +37,10 @@ class User extends Authenticatable
         return $this-> hasMany(Share::class, 'user_id');
     }
     public function likes(){
-        return $this-> hasMany(Like::class, 'user_id');
+        return $this->hasMany(Like::class, 'user_id');
     }
     public function comments(){
-        return $this-> hasMany(Comment::class, 'user_id');
+        return $this->hasMany(Comment::class, 'user_id');
     }
     public function replies(){
         return $this->hasMany(Reply::class, 'user_id');
@@ -49,7 +49,8 @@ class User extends Authenticatable
     public function reborts(){
         return $this-> hasMany(UserReport::class, 'user_id');
     }
-    public function reads(){
+    public function reads(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
         return $this-> hasMany(ReadBy::class, 'user_id');
     }
 
