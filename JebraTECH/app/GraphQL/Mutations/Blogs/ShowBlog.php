@@ -5,18 +5,21 @@ namespace App\GraphQL\Mutations\Blogs;
 use App\Models\Blog;
 use Illuminate\Validation\ValidationException;
 
-final class RestorBlog
+final class ShowBlog
 {
     public function __invoke($_, array $args)
     {
+
         $id = $args['id'];
-        $blog = Blog::withTrashed()->find($id);
+        $blog = Blog::find($id);
 
-        if($blog && $blog->trashed()){
+        if($blog && $blog->is_hidden === 1 ){
 
-            $blog->restore();
+            $blog->is_hidden = false;
+            $blog->save();
 
-            return $blog;
+            return $blog ;
+
         }else{
 
             throw ValidationException::withMessages([
@@ -24,5 +27,6 @@ final class RestorBlog
             ]);
 
         }
+
     }
 }

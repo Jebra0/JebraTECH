@@ -54,11 +54,9 @@ class Blog extends Model
 
     public function delete()
     {
-   // Soft delete related tables because i can not use ->onDelete('cascade') because i do not have migration files
-        $this->comments()->delete();
-//        $this->comments()->each(function ($comment) {
-//            $comment->delete(); // Soft delete related comments
-//        });
+        $this->comments()->each(function ($comment) {
+            $comment->delete(); // Soft delete related comments
+        });
         $this->media()->delete();
         $this->blogtags()->delete();
         $this->shares()->delete();
@@ -72,17 +70,18 @@ class Blog extends Model
 
     public function restore()
     {
-        parent::restore(); // Perform the restore on the blog itself
+        $this->comments()->withTrashed()->get()->each(function ($comment) {
+            $comment->restore();
+        });
 
-        $this->comments()->withTrashed()->restore(); // Restore related comments
+        $this->media()->restore();
+        $this->blogtags()->restore();
+        $this->shares()->restore();
+        $this->likes()->restore();
+        $this->reborts()->restore();
+        $this->reads()->restore();
 
-//        $this->media()->restore();
-//        $this->blogtags()->restore();
-//        $this->shares()->restore();
-//        $this->likes()->restore();
-//        $this->reborts()->restore();
-//        $this->reads()->restore();
-
+        return parent::restore();
     }
 
 }

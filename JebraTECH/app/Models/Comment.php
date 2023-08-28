@@ -39,10 +39,11 @@ class Comment extends Model
 
     public function restore()
     {
-        parent::restore();
-        $this->replies()->withTrashed()->restore(); // Restore related replies
+        $this->replies()->withTrashed()->get()->each(function ($reply) {
+            $reply->restore();
+        });
 
-
+        return parent::restore();
     }
 
 }

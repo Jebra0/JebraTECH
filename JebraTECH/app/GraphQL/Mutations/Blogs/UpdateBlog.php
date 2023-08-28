@@ -3,6 +3,7 @@
 namespace App\GraphQL\Mutations\Blogs;
 
 use App\Models\Blog;
+use Illuminate\Validation\ValidationException;
 
 final class UpdateBlog
 {
@@ -23,15 +24,25 @@ final class UpdateBlog
         $id = $args['id'];
         $blog = Blog::find($id);
 
-        $blog->title = $args['title'];
-        $blog->body = $args['body'];
-        $blog->description = $args['description'];
-        $blog->is_hidden = $args['is_hidden'];
-        $blog->category_id  = $args['category_id'];
+        if($blog){
 
-        $blog->save();
+            $blog->title = $args['title'];
+            $blog->body = $args['body'];
+            $blog->description = $args['description'];
+            $blog->is_hidden = $args['is_hidden'];
+            $blog->category_id  = $args['category_id'];
 
-        return $blog;
+            $blog->save();
+
+            return $blog;
+
+        }else{
+
+            throw ValidationException::withMessages([
+                'blog' => ['Blog not found '],
+            ]);
+
+        }
 
     }
 }

@@ -28,6 +28,10 @@ extend type Mutation {
     DeleteBlog(id: Int! @rules(apply: ["required", "exists:blogs,id"])): Blog!
 
     RestorBlog(id: Int! @rules(apply: ["required", "exists:blogs,id"])): Blog!
+
+    ShowBlog(id: Int! @rules(apply: ["required", "exists:blogs,id"])): Blog!
+
+    HideBlog(id: Int! @rules(apply: ["required", "exists:blogs,id"])): Blog!
 }
 
 type Blog {
