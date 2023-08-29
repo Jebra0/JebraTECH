@@ -1,3 +1,10 @@
+extend type Query {
+
+    GetMediToBlog(blog_id: Int! @rules(apply: ["required", "exists:blogs,id"])): [Media]
+
+
+}
+
 type Media {
     id: ID!
     caption: String

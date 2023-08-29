@@ -33,7 +33,7 @@ class Blog extends Model
     }
 
     public function media(){
-        return $this-> hasMany(Media::class, 'blog_id');
+        return $this->hasMany(Media::class, 'blog_id');
     }
 
     public function shares(){
