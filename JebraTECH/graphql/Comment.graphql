@@ -13,7 +13,7 @@ extend type Mutation {
         content: String! @rules(apply: ["required", "string", "max:500"])
         user_id: Int!
         blog_id: Int!
-    ): Comment
+    ): Comment @create 
 
     UpdateComment(
         id: ID!
