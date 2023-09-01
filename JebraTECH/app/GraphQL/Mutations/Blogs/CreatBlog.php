@@ -9,7 +9,7 @@ final class CreatBlog
 {
     public function __invoke($_, array $args )
     {
-
+        
         $validator = \Illuminate\Support\Facades\Validator::make($args, [
             'title' => ['required', 'string', 'max:250'],
             'body' => ['required', 'string'],

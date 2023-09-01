@@ -1,15 +1,27 @@
 extend type Query {
 
     GetMediToBlog(blog_id: Int! @rules(apply: ["required", "exists:blogs,id"])): [Media]
+    
 
+}
+
+extend type Mutation{
+
+    AddMedia(
+        url: String! @rules(apply: ["required", "String", "max:500"]) 
+        image: Upload! @rules(apply: ["required", "image", "max:3060"])
+        caption: String @rules(apply: ["String", "max:600"])
+        blog_id: Int! @rules(apply: ["required", "max:1", "exists:blogs,id"])
+    ): Media!
 
 }
 
 type Media {
     id: ID!
+    url: String #url of youtupe vedio if exict
+    image: String! #name of image
     caption: String
     blog_id: Int!
-    url: String!
     created_at: DateTime!
     updated_at: DateTime!
 
