@@ -1,19 +1,27 @@
 extend type Query {
 
     GetMediToBlog(blog_id: Int! @rules(apply: ["required", "exists:blogs,id"])): [Media]
-    
+
 
 }
 
 extend type Mutation{
 
     AddMedia(
-        url: String! @rules(apply: ["required", "String", "max:500"]) 
+        url: String! @rules(apply: ["required", "String", "max:500", "url"])
         image: Upload! @rules(apply: ["required", "image", "max:3060"])
         caption: String @rules(apply: ["String", "max:600"])
         blog_id: Int! @rules(apply: ["required", "max:1", "exists:blogs,id"])
     ): Media!
 
+    UpdateMedia(
+        id: ID! @rules(apply: ["required", "exists:media,id", "max: 1"])
+        url: String! @rules(apply: ["required", "String", "max:500", "url"])
+        image: Upload! @rules(apply: ["required", "image", "max:3060"])
+        caption: String @rules(apply: ["String", "max:600"])
+    ):Media!
+
+    DeleteMedia(id: ID! @rules(apply: ["required", "exists:media,id", "max: 1"])): String
 }
 
 type Media {
