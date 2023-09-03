@@ -164,7 +164,7 @@ return [
             'App\\GraphQL\\Queries\\Comments',
             'App\\GraphQL\\Queries\\Blogs',
             'App\\GraphQL\\Queries\\Media',
-            'App\\GraphQL\\Queries\\Tags',
+            'App\\GraphQL\\Queries\\BlogTags',
         ],
         'mutations' => [
             'App\\GraphQL\\Mutations',
@@ -173,6 +173,7 @@ return [
             'App\\GraphQL\\Mutations\\Blogs',
             'App\\GraphQL\\Mutations\\Media',
             'App\\GraphQL\\Mutations\\Tags',
+            'App\\GraphQL\\Mutations\\BlogTags',
         ],
         'subscriptions' => 'App\\GraphQL\\Subscriptions',
         'types' => 'App\\GraphQL\\Types',

@@ -25,5 +25,5 @@ type Tag {
     id: ID!
     name: String!
 
-    tageblogtags: [BlogTag!]! @hasMany
+    tageblogtags: [BlogTag] @hasMany
 }

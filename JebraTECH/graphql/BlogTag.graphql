@@ -1,6 +1,28 @@
+extend type Query {
+    blogtag(id: ID! @eq): BlogTag! @find
 
+    GetBlogsInTag(tag: Int!): [Blog!]!
+
+    GetTagsInBlog(blog: Int!): [Tag!]!
+}
+
+extend type Mutation {
+    AddBlogTags(
+        blog_id: Int! @rules(apply: ["required", "exists:blogs,id"])
+        tag_id: Int! @rules(apply: ["required", "exists:tags,id"])
+    ): BlogTag!
+
+    UpdateBlogTags(
+        id: ID! @rules(apply: ["required", "exists:Blog_tags,id"])
+        blog_id: Int! @rules(apply: ["required", "exists:blogs,id"])
+        tag_id: Int! @rules(apply: ["required", "exists:tags,id"])
+    ): BlogTag!
+
+    DeleteBlogTags(id: ID! @whereKey): BlogTag! @forceDelete
+}
 
 type BlogTag {
+    id: ID!
     blog_id: Int!
     tag_id: Int!
 

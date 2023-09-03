@@ -29,7 +29,7 @@ class Blog extends Model
     }
 
     public function blogtags(){
-        return $this-> hasMany(BlogTag::class, 'blog_id');
+        return $this->hasMany(BlogTag::class, 'blog_id');
     }
 
     public function media(){
