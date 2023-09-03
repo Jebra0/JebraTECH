@@ -13,7 +13,7 @@ final class AddMedia
             'url' => ['required', 'String', 'max:500', 'url'],
             'image' => ['required', 'image', 'max:3060'],
             'caption' => ['String', 'max:600'],
-            'blog_id' => ['required', 'max:1', 'exists:blogs,id']
+            'blog_id' => ['required', 'exists:blogs,id']
         ]);
 
         if ($validator->fails()) {

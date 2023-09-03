@@ -17,7 +17,7 @@ extend type Mutation {
     ): Blog!
 
     UpdateBlog(
-        id: Int!
+        id: ID! @rules(apply: ["required", "exists:blogs,id"])
         title: String! @rules(apply: ["required", "string", "max:250"])
         body: String! @rules(apply: ["required", "string"])
         description: String! @rules(apply: ["required", "string", "max:500"])

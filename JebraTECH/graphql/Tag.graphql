@@ -1,4 +1,25 @@
+extend type Query {
+    tag(id: ID! @eq): Tag! @find
+    tags: [Tag!]! @paginate(defaultCount: 10)
+}
 
+extend type Mutation {
+    AddTag(
+        name: String! @rules(apply: ["required", "string", "max:500"])
+    ): Tag!
+
+    UpdateTag(
+        id: ID! @rules(apply: ["required", "exists:tags,id"])
+        name: String! @rules(apply: ["required", "string", "max:500"])
+    ): Tag!
+
+    DeleteTag(id: ID!): String!
+
+    RestoreTag(id: ID!): String!
+
+    ForceDeleteTag(id: ID!): String!
+
+}
 
 type Tag {
     id: ID!
