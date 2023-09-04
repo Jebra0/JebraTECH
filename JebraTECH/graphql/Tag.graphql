@@ -17,7 +17,7 @@ extend type Mutation {
 
     RestoreTag(id: ID!): String!
 
-    ForceDeleteTag(id: ID!): String!
+    ForceDeleteTag(id: ID!): Tag!
 
 }
 

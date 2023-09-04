@@ -1,11 +1,9 @@
 <?php
 
-namespace App\GraphQL\Mutations;
+namespace App\GraphQL\Mutations\Users;
 
 use App\Models\Admin;
 use App\Models\User;
-use Illuminate\Support\Facades\Auth;
-use Laravel\Sanctum\Sanctum;
 
 final class Logout
 {

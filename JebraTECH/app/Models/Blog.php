@@ -17,6 +17,7 @@ class Blog extends Model
         'body',
         'description',
         'is_hidden',
+        'is_confirmed', // if the blog is published or not
         'category_id',
         'writter_id',
     ];

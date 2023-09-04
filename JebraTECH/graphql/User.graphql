@@ -10,6 +10,8 @@ extend type Query {
 
     me: User! @auth @guard
 
+
+
 }
 
 extend type Mutation {
@@ -29,6 +31,7 @@ type User {
     updated_at: DateTime!
     password: String
     is_writer: Boolean
+
 
     shares: [Share]! @hasMany
     likes: [Like]! @hasMany

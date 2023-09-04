@@ -3,6 +3,12 @@ extend type Query {
     blogs: [Blog!]! @paginate(defaultCount: 10)
     GetPopoularBlog(first: Int!, page: Int!): [Blog!]! @paginate(builder: "App\\GraphQL\\Queries\\Blogs\\GetPopoularBlog")
     GetBlogsWithTime(date1: DateTime, date2: DateTime): [Blog!]!
+
+    GetUserBlogs(writer_id: Int! @rules(apply: ["required", "exists:users,id"])): [Blog]
+
+    GetUserUnvisibleBlogs(writer_id: Int! @rules(apply: ["required", "exists:users,id"])): [Blog]
+
+    GetUserUnconfirmedBlogs(writer_id: Int! @rules(apply: ["required", "exists:users,id"])): [Blog]
 }
 
 extend type Mutation {
@@ -38,7 +44,8 @@ type Blog {
     title: String!
     body: String!
     description: String!
-    is_hidden: Int
+    is_hidden: Boolean
+    is_confirmed: Boolean!
     category_id: Int!
     writter_id: Int!
     created_at: DateTime!
