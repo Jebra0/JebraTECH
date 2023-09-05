@@ -2,10 +2,10 @@
 extend type Query {
     user(
         id: ID @eq @rules(apply: ["prohibits:email", "required_without:email"])
-    ): User @find
+    ): User @find @guard
 
     users(
-        name: String @where(operator: "like")
+        name: String @where(operator: "like") # it search ok but with the same name only with insensitive letters
     ): [User!]! @paginate(defaultCount: 10)
 
     me: User! @auth @guard
@@ -19,7 +19,11 @@ extend type Mutation {
         name: String! @rules(apply: ["required", "min:10", "max:100"]),
         email: String! @rules(apply: ["email"]),
         password: String @rules(apply: ["min:8", "max:100"])
-    ): User! @create
+    ): User! @create @guard
+
+    BeUser(writer: ID!): String! @guard
+
+    BeWriter(id: ID!): User! @guard
 }
 
 type User {

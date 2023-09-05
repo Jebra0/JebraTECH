@@ -1,3 +1,7 @@
+extend type Query {
+    GetNumOfBlocks(writer: Int!): Int!  # writer == user_blocked_id
+}
+
 type UserBlock {
     id: ID!
     user_id: Int!

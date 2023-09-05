@@ -1,3 +1,7 @@
+extend type Query {
+    GetNumOfReports(blog: Int! @rules(apply: ["required", "exists:blogs,id"])): Int!
+}
+
 type UserReport {
     id: ID!
     user_id: Int!

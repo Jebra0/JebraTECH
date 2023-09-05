@@ -166,6 +166,8 @@ return [
             'App\\GraphQL\\Queries\\Media',
             'App\\GraphQL\\Queries\\BlogTags',
             'App\\GraphQL\\Queries\\Users',
+            'App\\GraphQL\\Queries\\UserBlocks',
+            'App\\GraphQL\\Queries\\UserReports',
         ],
         'mutations' => [
             'App\\GraphQL\\Mutations',
@@ -176,6 +178,8 @@ return [
             'App\\GraphQL\\Mutations\\Tags',
             'App\\GraphQL\\Mutations\\BlogTags',
             'App\\GraphQL\\Mutations\\Users',
+            'App\\GraphQL\\Mutations\\UserBlocks',
+            'App\\GraphQL\\Mutations\\UserReports',
         ],
         'subscriptions' => 'App\\GraphQL\\Subscriptions',
         'types' => 'App\\GraphQL\\Types',

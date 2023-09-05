@@ -1,6 +1,6 @@
 extend type Query {
     blog(id: ID @eq): Blog! @find
-    blogs: [Blog!]! @paginate(defaultCount: 10)
+#    blogs: [Blog!]! @paginate(defaultCount: 10)
     GetPopoularBlog(first: Int!, page: Int!): [Blog!]! @paginate(builder: "App\\GraphQL\\Queries\\Blogs\\GetPopoularBlog")
     GetBlogsWithTime(date1: DateTime, date2: DateTime): [Blog!]!
 
@@ -9,6 +9,11 @@ extend type Query {
     GetUserUnvisibleBlogs(writer_id: Int! @rules(apply: ["required", "exists:users,id"])): [Blog]
 
     GetUserUnconfirmedBlogs(writer_id: Int! @rules(apply: ["required", "exists:users,id"])): [Blog]
+
+    blogs(
+        title: String @where(operator: "like") # u should write the hole title
+    ): [Blog!]! @paginate(defaultCount: 10)
+
 }
 
 extend type Mutation {
