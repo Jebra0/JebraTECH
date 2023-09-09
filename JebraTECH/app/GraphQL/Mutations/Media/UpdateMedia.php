@@ -40,7 +40,7 @@ final class UpdateMedia
         }else{
 
             throw ValidationException::withMessages([
-                'media' => ['media not found '],
+                'message' => ['media not found '],
             ]);
         }
 

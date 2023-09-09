@@ -168,6 +168,7 @@ return [
             'App\\GraphQL\\Queries\\Users',
             'App\\GraphQL\\Queries\\UserBlocks',
             'App\\GraphQL\\Queries\\UserReports',
+            'App\\GraphQL\\Queries\\Admins',
         ],
         'mutations' => [
             'App\\GraphQL\\Mutations',
@@ -180,6 +181,7 @@ return [
             'App\\GraphQL\\Mutations\\Users',
             'App\\GraphQL\\Mutations\\UserBlocks',
             'App\\GraphQL\\Mutations\\UserReports',
+            'App\\GraphQL\\Mutations\\Admins',
         ],
         'subscriptions' => 'App\\GraphQL\\Subscriptions',
         'types' => 'App\\GraphQL\\Types',

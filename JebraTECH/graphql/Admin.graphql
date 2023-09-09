@@ -3,22 +3,52 @@ extend type Query {
         id: ID @eq
     ): Admin @find
 
-    Admins(
-        name: String @where(operator: "like")
-    ): [Admin!]! @paginate(defaultCount: 10)
-
-     myADMIN(id: ID @eq): Admin! @find
-
+    Admins: [Admin!]! @paginate(defaultCount: 10)
 }
 
+extend type Mutation {
+    CreateAdmin(
+        name: String! @rules(apply: ["required", "min:10", "max:100"]),
+        email: String! @rules(apply: ["email"]),
+        gender: Boolean @rules(apply: ["max: 1", "Boolean"]), # one for women zero for nen
+        password: String @rules(apply: ["min:8", "max:100"]),
+    ): Admin! @create #@guard
+
+    UpdateAdmin(
+        id: ID! @rules(apply: ["required", "exists:admins,id"]),
+        name: String! @rules(apply: ["required", "min:10", "max:100"]),
+        email: String! @rules(apply: ["email"]),
+        gender: Boolean @rules(apply: ["max: 1", "Boolean"]), # one for women zero for nen
+        password: String @rules(apply: ["min:8", "max:100"]),
+    ): Admin!
+
+    UpdateAdminPhoto(
+        id: ID! @rules(apply: ["required", "exists:admins,id"]),
+        photo: Upload! @rules(apply: ["required", "image", "max: 3060"])
+    ): Admin!
+
+    DissactivateAdmin(
+        id: ID! @rules(apply: ["required", "exists:admins,id"]),
+    ):Admin!
+
+    ActivateAdmin(
+        id: ID! @rules(apply: ["required", "exists:admins,id"]),
+    ):Admin!
+
+}
 
  type Admin {
     id: ID!
     name: String!
     email: String!
+    gender: Boolean
+    photo: Upload  #//set to default photo at registration
+    is_active: Boolean     #// default value is one
+    last_login_at: DateTime
     created_at: DateTime!
     updated_at: DateTime!
     password: String
+    email_verified_at: DateTime
 
     chates: [Chate] @belongsTo
     news: [News] @hasMany

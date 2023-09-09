@@ -1,16 +1,16 @@
 <?php
 
-namespace App\GraphQL\Mutations\Users;
+namespace App\GraphQL\Mutations\Admins;
 
 use App\Models\Admin;
-use App\Models\User;
 
-final class Logout
+final class AdminLogout
 {
+
     public function __invoke($_, array $args)
     {
 
-        $table = User::where('id', $args['id'])->first();
+        $table = Admin::where('id', $args['id'])->first();
 
         $table->tokens()->delete();
         return $table;
