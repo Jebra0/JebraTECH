@@ -24,6 +24,15 @@ extend type Mutation {
     BeUser(writer: ID!): String! @guard
 
     BeWriter(id: ID!): User! @guard
+
+    UpdauteUser(
+        id: ID! @rules(apply: ["required", "exists:users,id"]),
+        name: String!  @rules(apply: ["required", "min:10", "max:100"]),  #email verification column did not changed
+        email: String!  @rules(apply: ["required", "min:10", "max:100", "email"]),
+        password: String!  @rules(apply: ["required", "min:8", "max:100"])
+    ): User
+
+
 }
 
 type User {
