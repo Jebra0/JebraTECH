@@ -1,5 +1,11 @@
-extend type Query {
-    GetNumOfBlocks(writer: Int!): Int!  # writer == user_blocked_id
+
+extend type Mutation {
+    AddBlock(
+        user_id: Int! @rules(apply: ["required", "int", "exists:users,id"]),
+        writer_id: Int! @rules(apply: ["required", "int", "exists:users,id"]),
+    ): UserBlock! @create  @event(dispatch: "App\\Events\\BlockWriter")
+
+    DeleteBlock(id: ID! @eq):UserBlock! @delete
 }
 
 type UserBlock {

@@ -21,7 +21,6 @@ extend type Mutation {
         password: String @rules(apply: ["min:8", "max:100"])
     ): User! @create @guard
 
-    BeUser(writer: ID!): String! @guard
 
     BeWriter(id: ID!): User! @guard
 

@@ -23,7 +23,7 @@ extend type Mutation {
         description: String! @rules(apply: ["required", "string", "max:500"])
         is_hidden: Boolean
         category_id: Int!  @rules(apply: ["required", "exists:categories,id"])
-        writter_id: Int! @rules(apply: ["required", "exists:users,id"])
+        writter_id: Int! @rules(apply: ["required", "exists:users,id" ])
     ): Blog!
 
     UpdateBlog(

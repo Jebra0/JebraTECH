@@ -8,14 +8,16 @@ use Illuminate\Contracts\Validation\ValidationRule;
 
 class CheckUserIfIsWriter implements ValidationRule
 {
-    protected $id;
+    protected $userId;
 
-    public function __construct($id){
-        $this->id = $id;
+    public function __construct($userId)
+    {
+        $this->userId = $userId;
     }
+
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        $user = User::where('id', $this->id)->where('is_writer', 1)->exists();
+        $user = User::where('id', $this->userId)->where('is_writer', 1)->exists();
 
         if (!$user) {
             $fail('The selected user must have to be writer');
