@@ -43,7 +43,7 @@ type User {
     updated_at: DateTime!
     password: String
     is_writer: Boolean
-
+    block_expiration_date: DateTime
 
     shares: [Share]! @hasMany
     likes: [Like]! @hasMany

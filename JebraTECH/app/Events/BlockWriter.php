@@ -2,7 +2,6 @@
 
 namespace App\Events;
 
-use App\GraphQL\Queries\UserBlocks\GetNumOfBlocks;
 use App\Models\UserBlock;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;

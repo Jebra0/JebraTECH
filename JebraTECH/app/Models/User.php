@@ -16,6 +16,7 @@ class User extends Authenticatable
         'email',
         'password',
         'is_writer',
+        'block_expiration_date', //if it blocked 10 times will block from writing for month
         'gender',
         'photo',
         'about',
