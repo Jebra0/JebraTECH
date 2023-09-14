@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use App\Events\BlockWriter;
+use App\Events\ReportBlog;
 use App\Listeners\BlockWrittinglistener;
+use App\Listeners\ReportBlogListener;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -19,6 +21,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         BlockWriter::class => [
             BlockWrittinglistener::class,
+        ],
+        ReportBlog::class => [
+            ReportBlogListener::class,
         ],
 
     ];

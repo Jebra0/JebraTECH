@@ -27,7 +27,12 @@ class BlockWrittinglistener
          $writer = User::find($event->block->user_blocked_id);
          $blocks = UserBlock::where('user_blocked_id', $event->block->user_blocked_id);
 
-         if($blocks->count() == 10 ){
+         if($blocks->count() < 10 ){
+
+             $writer->notify(new WarningUserFromBlock($writer, $blocks->count()));
+
+         }elseif($blocks->count() == 10 ){
+
              $blocks->delete();
 
              $writer->is_writer = 0;
@@ -36,10 +41,6 @@ class BlockWrittinglistener
 
              Mail::to($writer->email)->send(new BlockedUser($writer));
              $writer->notify(new BlockUserViaDatabase($writer));
-
-         }elseif($blocks->count() < 10 ){
-
-             $writer->notify(new WarningUserFromBlock($writer, $blocks->count()));
 
          }
 

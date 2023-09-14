@@ -2,11 +2,21 @@ extend type Query {
     GetNumOfReports(blog: Int! @rules(apply: ["required", "exists:blogs,id"])): Int!
 }
 
+extend type Mutation {
+    AddReport(
+#////////////if it not hidden//////////
+#/////////////////////////////////////
+        user_id: Int! @rules(apply: ["required", "int", "exists:users,id"]),
+        blog_id: Int! @rules(apply: ["required", "int", "exists:blogs,id"]),
+    ):UserReport! @create @event(dispatch: "App\\Events\\ReportBlog")
+}
+
 type UserReport {
     id: ID!
     user_id: Int!
     blog_id: Int!
     created_at: DateTime!
+    deleted_at: DateTime!
 
     blog: Blog! @belongsTo
     user: [User]! @hasMany
