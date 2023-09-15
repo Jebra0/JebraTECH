@@ -20,6 +20,7 @@ class Blog extends Model
         'is_confirmed', // if the blog is published or not
         'category_id',
         'writter_id',
+        'scheduling_date' // for scheduling the blogs
     ];
     public function category(){
         return $this->belongsTo(Category::class, 'category_id');

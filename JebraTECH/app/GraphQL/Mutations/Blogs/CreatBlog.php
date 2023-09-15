@@ -17,6 +17,7 @@ final class CreatBlog
             'description' => ['required', 'string', 'max:500'],
             'category_id' => ['required', 'integer', 'exists:categories,id'],
             'writter_id' => ['required', 'integer', 'exists:users,id', new CheckUserIfIsWriter($args['writter_id'])],
+            'scheduling_date' => ['date', 'after:now'],
         ]);
 
         if ($validator->fails()) {
@@ -31,6 +32,7 @@ final class CreatBlog
         $blog->is_hidden = $args['is_hidden'];
         $blog->category_id  = $args['category_id'];
         $blog->writter_id   = $args['writter_id'];
+        $blog->scheduling_date = $args['scheduling_date'];
 
         $blog->save();
 

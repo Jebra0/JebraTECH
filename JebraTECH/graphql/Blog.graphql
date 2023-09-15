@@ -24,6 +24,7 @@ extend type Mutation {
         is_hidden: Boolean
         category_id: Int!  @rules(apply: ["required", "exists:categories,id"])
         writter_id: Int! @rules(apply: ["required", "exists:users,id" ])
+        scheduling_date: DateTime @rules(apply: ["date", "after:now"] )
     ): Blog!
 
     UpdateBlog(
@@ -42,6 +43,10 @@ extend type Mutation {
     ShowBlog(id: Int! @rules(apply: ["required", "exists:blogs,id"])): Blog!
 
     HideBlog(id: Int! @rules(apply: ["required", "exists:blogs,id"])): Blog!
+
+#    ScheduleBlog(
+#
+#    ): Blog! @update
 }
 
 type Blog {
@@ -53,6 +58,7 @@ type Blog {
     is_confirmed: Boolean!
     category_id: Int!
     writter_id: Int!
+    scheduling_date: DateTime
     created_at: DateTime!
     updated_at: DateTime!
 
