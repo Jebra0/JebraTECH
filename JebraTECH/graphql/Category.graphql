@@ -1,10 +1,43 @@
+extend type Query {
 
+    GetAllCategories: [Category!]! @paginate(defaultCount: 10)
+    GetCategory(id: ID! @eq @rules(apply: ["required", "exists:categories,id"])): Category! @find
+    SearchCategories(
+        name: String! @rules(apply: ["required", "string", "max:250"])  @where(operator: "like") #you should write the hole title
+    ): [Category!]! @paginate(defaultCount: 10)
+
+}
+
+extend type Mutation {
+
+    AddCategory(
+        name: String! @rules(apply: ["required", "string", "max:250"])
+    ): Category! @create
+
+    UpdateCategory(
+        id: ID! @rules(apply: ["required", "exists:categories,id"])
+        name: String! @rules(apply: ["required", "string", "max:250"])
+    ): Category! @update
+
+    DeleteCategory(
+        id: ID! @eq @rules(apply: ["required", "exists:categories,id"])
+    ): Category! @delete
+
+    RestoreCategory(
+        id: ID! @eq @rules(apply: ["required", "exists:categories,id"])
+    ): Category! @restore
+
+    ForceDeleteCategory(
+        id: ID! @eq @rules(apply: ["required", "exists:categories,id"])
+    ): Category! @forceDelete
+}
 
 type Category {
     id: ID!
     name: String!
     created_at: DateTime!
     updated_at: DateTime!
+    deleted_at: DateTime
 
     blogs: [Blog!]! @hasMany
 }
