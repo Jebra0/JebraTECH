@@ -17,6 +17,4 @@ class Follow extends Model
     public function follows(){
         return $this->belongsToMany(User::class, 'Follow', 'follower_id', 'followed_id');
     }
-
-    public $timestamps = false;
 }

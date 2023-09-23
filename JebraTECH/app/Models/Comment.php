@@ -6,12 +6,17 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
+use ShiftOneLabs\LaravelCascadeDeletes\CascadesDeletes;
+
 
 class Comment extends Model
 {
 
     use  HasFactory, Notifiable;
-        use SoftDeletes;
+    use SoftDeletes;
+    use CascadesDeletes;
+
+    protected $cascadeDeletes = ['replies'];
 
     protected $fillable = [
         'user_id',
@@ -31,19 +36,6 @@ class Comment extends Model
         return $this->hasMany(Reply::class, 'comment_id');
     }
 
-    public function delete()
-    {
-        $this->replies()->delete();
-        return parent::delete();
-    }
 
-    public function restore()
-    {
-        $this->replies()->withTrashed()->get()->each(function ($reply) {
-            $reply->restore();
-        });
-
-        return parent::restore();
-    }
 
 }

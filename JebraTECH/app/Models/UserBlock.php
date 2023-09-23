@@ -18,6 +18,5 @@ class UserBlock extends Model
         return $this->belongsToMany(User::class, 'UserBlock', 'user_id', 'user_blocked_id');
     }
 
-    public $timestamps = false;
 
 }

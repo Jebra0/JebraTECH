@@ -7,10 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use ShiftOneLabs\LaravelCascadeDeletes\CascadesDeletes;
+
 class Blog extends Model
 {
     use HasApiTokens, HasFactory, Notifiable;
     use SoftDeletes;
+
+    use CascadesDeletes;
+
+    protected $cascadeDeletes = ['blogtags', 'media', 'shares', 'likes', 'comments', 'reborts', 'reads'];
 
     protected $fillable = [
         'title',
@@ -54,36 +60,6 @@ class Blog extends Model
         return $this-> hasMany(ReadBy::class, 'blog_id');
     }
 
-    public function delete()
-    {
-        $this->comments()->each(function ($comment) {
-            $comment->delete(); // Soft delete related comments
-        });
-        $this->media()->delete();
-        $this->blogtags()->delete();
-        $this->shares()->delete();
-        $this->likes()->delete();
-        $this->reborts()->delete();
-        $this->reads()->delete();
 
-        // Perform the soft delete on the blog itself
-        return parent::delete();
-    }
-
-    public function restore()
-    {
-        $this->comments()->withTrashed()->get()->each(function ($comment) {
-            $comment->restore();
-        });
-
-        $this->media()->restore();
-        $this->blogtags()->restore();
-        $this->shares()->restore();
-        $this->likes()->restore();
-        $this->reborts()->restore();
-        $this->reads()->restore();
-
-        return parent::restore();
-    }
 
 }

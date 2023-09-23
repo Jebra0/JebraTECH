@@ -24,6 +24,5 @@ class UserReport extends Model
     public function user(){
         return $this->hasMany(User::class, 'user_id');
     }
-    public $timestamps = false;
 
 }

@@ -12,6 +12,7 @@
         "laravel/tinker": "^2.8",
         "mll-lab/laravel-graphiql": "^3.1",
         "nuwave/lighthouse": "^6.14",
+        "shiftonelabs/laravel-cascade-deletes": "^2.0",
         "symfony/http-client": "^6.3",
         "symfony/mailgun-mailer": "^6.3"
     },

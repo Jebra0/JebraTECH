@@ -25,6 +25,4 @@ class BlogTag extends Model
         return $this->belongsTo(Tag::class, 'tag_id');
     }
 
-    public $timestamps = false;
-
 }
