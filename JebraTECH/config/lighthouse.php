@@ -182,6 +182,7 @@ return [
             'App\\GraphQL\\Mutations\\UserBlocks',
             'App\\GraphQL\\Mutations\\UserReports',
             'App\\GraphQL\\Mutations\\Admins',
+            'App\\GraphQL\\Mutations\\Categories',
         ],
         'subscriptions' => 'App\\GraphQL\\Subscriptions',
         'types' => 'App\\GraphQL\\Types',
