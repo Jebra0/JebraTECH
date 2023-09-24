@@ -23,9 +23,9 @@ extend type Mutation {
         id: ID! @eq @rules(apply: ["required", "exists:categories,id"])
     ): Category! @delete
 
-    RestoreCategory(
-        id: ID! @eq @rules(apply: ["required", "exists:categories,id"])
-    ): Category! @restore
+    RestorCategory(
+        id: ID! @rules(apply: ["required", "exists:categories,id"])
+    ): Category!
 
     ForceDeleteCategory(
         id: ID! @eq @rules(apply: ["required", "exists:categories,id"])
