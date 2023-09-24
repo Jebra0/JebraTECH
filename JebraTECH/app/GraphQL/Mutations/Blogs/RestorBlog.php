@@ -1,7 +1,6 @@
 <?php
 
 namespace App\GraphQL\Mutations\Blogs;
-
 use App\Models\Blog;
 use Illuminate\Validation\ValidationException;
 
