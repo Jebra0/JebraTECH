@@ -16,20 +16,21 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('user_blocked_id');
             $table->index('user_blocked_id');
-            
+
             // Define foreign keys
             $table->foreign('user_blocked_id')
              ->references('id')
              ->on('users')
              ->onDelete('cascade')
              ->onUpdate('cascade');
-            
+
             $table->foreign('user_id')
              ->references('id')
              ->on('users')
              ->onDelete('cascade')
              ->onUpdate('cascade');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

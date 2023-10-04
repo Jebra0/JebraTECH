@@ -10,7 +10,6 @@ use Illuminate\Notifications\Notifiable;
 class Tag extends Model
 {
     use  HasFactory, Notifiable;
-    use SoftDeletes;
 
     protected $fillable =[
         'name',

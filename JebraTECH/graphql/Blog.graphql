@@ -14,6 +14,7 @@ extend type Query {
         title: String @where(operator: "like") # u should write the hole title
     ): [Blog!]! @paginate(defaultCount: 10)
 
+    GetBlogWithCategory(category_id: Int! @eq @rules(apply: ["required", "exists:categories,id"])): [Blog!]! @paginate
 }
 
 extend type Mutation {

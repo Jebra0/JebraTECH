@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('follower_id')->nullable();
             $table->unsignedBigInteger('followed_id')->nullable();
-            
+
             $table->index('follower_id', 'fk_users_follows');
             $table->index('followed_id', 'fk_follows_users');
 
@@ -33,6 +33,7 @@ return new class extends Migration
                 ->onUpdate('cascade');
 
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

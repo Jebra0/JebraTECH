@@ -13,11 +13,6 @@ extend type Mutation {
         name: String! @rules(apply: ["required", "string", "max:500"])
     ): Tag!
 
-    DeleteTag(id: ID!): String!
-
-    RestoreTag(id: ID!): String!
-
-    ForceDeleteTag(id: ID!): Tag!
 
 }
 

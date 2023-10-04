@@ -15,7 +15,7 @@ return new class extends Migration
             $table->string('description')->nullable();
             $table->boolean('is_hidden')->default(0);
             $table->boolean('is_confirmed')->default(1);
-            
+
             $table->unsignedBigInteger('category_id')->nullable();
             $table->unsignedBigInteger('writer_id')->nullable()->comment('the writer user');
             $table->timestamp('scheduling_date')->nullable();
@@ -28,7 +28,7 @@ return new class extends Migration
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
 
-            $table->foreign('writer_id')
+            $table->foreign('writter_id')
                 ->references('id')
                 ->on('users')
                 ->onDelete('cascade')

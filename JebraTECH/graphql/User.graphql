@@ -31,7 +31,11 @@ extend type Mutation {
         password: String!  @rules(apply: ["required", "min:8", "max:100"])
     ): User
 
+    DeleteUser(id: ID! @eq @rules(apply: ["required", "exists:users,id"])): User! @delete
 
+#    RestoreUser(id: ID! @eq @rules(apply: ["required", "exists:users,id"])): User! @restore  # next version soon
+
+    ForceDeleteUser(id: ID! @eq @rules(apply: ["required", "exists:users,id"])): User! @forceDelete
 }
 
 type User {
@@ -53,6 +57,6 @@ type User {
     reads: [ReadBy]! @hasMany
     user_blocks: [UserBlock]! @hasMany
     user_follows: [Follow]! @hasMany
-    chate: Chate! @hasOne
+#    chate: Chate! @hasOne #in the next version
 
 }
