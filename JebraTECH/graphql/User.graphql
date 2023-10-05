@@ -4,9 +4,11 @@ extend type Query {
         id: ID @eq @rules(apply: ["prohibits:email", "required_without:email"])
     ): User @find @guard
 
-    users(
-        name: String @where(operator: "like") # it search ok but with the same name only with insensitive letters
-    ): [User!]! @paginate(defaultCount: 10)
+    SearchUser(
+        data: String! @rules(apply: ["String", "required", "max: 500"]),
+        first: Int! ,
+        page: Int!,
+    ): [User!]! @paginate(builder: "App\\GraphQL\\Queries\\Users\\SearchUser")
 
     me: User! @auth @guard
 

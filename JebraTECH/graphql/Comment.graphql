@@ -1,26 +1,33 @@
 extend type Query {
 
-    comment(id: ID @eq): Comment! @find
+    comment(id: ID @eq @rules(apply: ["required", "exists:comments,id"]) ): Comment! @find
+
     comments: [Comment!]! @paginate(defaultCount: 10)
-    LatestComments(count: Int!): [Comment!]!
-    TimeOfComments(date1: DateTime, date2: DateTime): [Comment!]! # get the comments with time
-    BlogComments(id:ID!):[Comment!]
-    UserComments(id: ID!):[Comment!]
-    CountBlogComments(id: ID!): Int
+
+    LatestComments: [Comment!]!@paginate(defaultCount: 10) @orderBy(column: "id", direction: DESC)
+
+    TimeOfComments(date1: DateTime , date2: DateTime): [Comment!]! # get the comments with time
+
+    BlogComments(blog_id: Int! @eq @rules(apply: ["required", "exists:blogs,id"])):[Comment!] @paginate(defaultCount: 10)
+
+    UserComments(user_id: Int! @eq):[Comment!] @paginate(defaultCount: 10)
+
+    CountBlogComments(blog_id: Int! @eq): Int @count(model: "Comment")
 }
+
 extend type Mutation {
     createComment(
         content: String! @rules(apply: ["required", "string", "max:500"])
-        user_id: Int!
-        blog_id: Int!
-    ): Comment @create 
+        user_id: Int! @rules(apply: ["required", "exists:users,id"])
+        blog_id: Int! @rules(apply: ["required", "exists:blogs,id"])
+    ): Comment @create
 
     UpdateComment(
-        id: ID!
+        id: ID! @eq @rules(apply: ["required", "exists:comments,id"])
         content: String! @rules(apply: ["required",  "string", "max:500"])
-    ): Comment
+    ): Comment @update
 
-    DeleteComment(id: ID!): Comment
+    DeleteComment(id: ID! @eq): Comment @forceDelete
 }
 type Comment{
     id: ID!
