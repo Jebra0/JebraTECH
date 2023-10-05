@@ -10,9 +10,11 @@ extend type Query {
 
     GetUserUnconfirmedBlogs(writer_id: Int! @rules(apply: ["required", "exists:users,id"])): [Blog]
 
-    blogs(
-        title: String @where(operator: "like") # u should write the hole title
-    ): [Blog!]! @paginate(defaultCount: 10)
+    SearchBlog(
+        data: String! @rules(apply: ["String", "required", "max: 500"]),
+        first: Int! ,
+        page: Int!,
+    ): [Blog!]! @paginate(builder: "App\\GraphQL\\Queries\\Blogs\\SearchBlog")
 
     GetBlogWithCategory(category_id: Int! @eq @rules(apply: ["required", "exists:categories,id"])): [Blog!]! @paginate
 }
