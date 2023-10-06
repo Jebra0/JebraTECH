@@ -20,7 +20,7 @@ extend type Mutation {
         name: String! @rules(apply: ["required", "min:10", "max:100"]),
         email: String! @rules(apply: ["email"]),
         password: String @rules(apply: ["min:8", "max:100"])
-    ): User! @create @guard
+    ): User! @create #@guard
 
 
     BeWriter(id: ID!): User! @guard

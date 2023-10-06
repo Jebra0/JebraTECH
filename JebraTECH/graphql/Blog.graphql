@@ -1,14 +1,26 @@
 extend type Query {
+
     blog(id: ID @eq): Blog! @find
-#    blogs: [Blog!]! @paginate(defaultCount: 10)
-    GetPopoularBlog(first: Int!, page: Int!): [Blog!]! @paginate(builder: "App\\GraphQL\\Queries\\Blogs\\GetPopoularBlog")
+
+    blogs: [Blog!]! @paginate(defaultCount: 10)
+
+    GetPopoularBlog(
+        first: Int!, page: Int!
+    ): [Blog!]! @paginate(builder: "App\\GraphQL\\Queries\\Blogs\\GetPopoularBlog")
+
     GetBlogsWithTime(date1: DateTime, date2: DateTime): [Blog!]!
 
-    GetUserBlogs(writer_id: Int! @rules(apply: ["required", "exists:users,id"])): [Blog]
+    GetUserBlogs(
+        writter_id: Int! @eq @rules(apply: ["required", "exists:users,id"])
+    ): [Blog!]! @all @orderBy(column: "created_at", direction: DESC)
 
-    GetUserUnvisibleBlogs(writer_id: Int! @rules(apply: ["required", "exists:users,id"])): [Blog]
+    GetUserUnvisibleBlogs(
+        writter_id: Int! @eq @rules(apply: ["required", "exists:users,id"])
+    ): [Blog!]! @all @where(key: "is_hidden", value: 1) @orderBy(column: "created_at", direction: DESC)
 
-    GetUserUnconfirmedBlogs(writer_id: Int! @rules(apply: ["required", "exists:users,id"])): [Blog]
+    GetUserUnconfirmedBlogs(
+        writter_id: Int! @eq @rules(apply: ["required", "exists:users,id"])
+    ): [Blog!]! @all @where(key: "is_confirmed", value: 0) @orderBy(column: "created_at", direction: DESC)
 
     SearchBlog(
         data: String! @rules(apply: ["String", "required", "max: 500"]),
@@ -24,34 +36,35 @@ extend type Mutation {
         title: String! @rules(apply: ["required", "string", "max:250"])
         body: String! @rules(apply: ["required", "string"])
         description: String! @rules(apply: ["required", "string", "max:500"])
-        is_hidden: Boolean
+        is_hidden: Boolean @rules(apply: ["boolean"])
         category_id: Int!  @rules(apply: ["required", "exists:categories,id"])
         writter_id: Int! @rules(apply: ["required", "exists:users,id" ])
         scheduling_date: DateTime @rules(apply: ["date", "after:now"] )
-    ): Blog!
+    ): Blog! @create #@guard
 
     UpdateBlog(
-        id: ID! @rules(apply: ["required", "exists:blogs,id"])
+        id: ID! @eq @rules(apply: ["required", "exists:blogs,id"])
         title: String! @rules(apply: ["required", "string", "max:250"])
         body: String! @rules(apply: ["required", "string"])
         description: String! @rules(apply: ["required", "string", "max:500"])
-        is_hidden: Boolean
+        is_hidden: Boolean @rules(apply: ["boolean"])
         category_id: Int!  @rules(apply: ["required", "exists:categories,id"])
-    ): Blog!
+    ): Blog!  @update #@guard
 
-    DeleteBlog(id: Int! @rules(apply: ["required", "exists:blogs,id"])): Blog!
+    DeleteBlog(id: Int! @eq @rules(apply: ["required", "exists:blogs,id"])): Blog! @delete
 
     RestorBlog(id: Int! @rules(apply: ["required", "exists:blogs,id"])): Blog!
 
     ForceDeleteBlog(id: Int! @eq @rules(apply: ["required", "exists:blogs,id"])): Blog! @forceDelete
 
-    ShowBlog(id: Int! @rules(apply: ["required", "exists:blogs,id"])): Blog!
+    ShowBlog(
+        id: Int! @eq @rules(apply: ["required", "exists:blogs,id"])
+    ): Blog!
 
-    HideBlog(id: Int! @rules(apply: ["required", "exists:blogs,id"])): Blog!
+    HideBlog(
+        id: Int! @rules(apply: ["required", "exists:blogs,id"])
+    ): Blog!
 
-#    ScheduleBlog(
-#
-#    ): Blog! @update
 }
 
 type Blog {
@@ -65,7 +78,7 @@ type Blog {
     writter_id: Int!
     scheduling_date: DateTime
     created_at: DateTime!
-    updated_at: DateTime!
+    deleted_at: DateTime!
 
     category: Category! @belongsTo
     writter: User! @belongsTo

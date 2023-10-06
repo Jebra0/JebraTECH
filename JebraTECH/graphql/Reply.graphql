@@ -1,20 +1,22 @@
 extend type Query {
     Reply(id: ID @eq): Reply! @find
+
+    CommentReplies(comment_id: Int! @eq): [Reply!]! @all
 }
 
 extend type Mutation {
     AddReply(
         content: String! @rules(apply: ["required",  "string", "max:500"])
-        comment_id: Int!
-        user_id: Int!
-    ): Reply
+        comment_id: Int! @rules(apply: ["required", "int", "exists:comments,id"])
+        user_id: Int! @rules(apply: ["required", "int", "exists:users,id"])
+    ): Reply! @create
 
     UpdateReply(
-        id: ID!
+        id: ID! @eq @rules(apply: ["required", "int", "exists:comments,id"])
         content: String! @rules(apply: ["required",  "string", "max:500"])
-    ): Reply
+    ): Reply! @update
 
-    DeleteReply(id: ID!): Reply
+    DeleteReply(id: ID! @eq): Reply! @forceDelete
 }
 
 type Reply{

@@ -4,6 +4,8 @@ extend type Query {
     ): Admin @find
 
     Admins: [Admin!]! @paginate(defaultCount: 10)
+
+    ActiveAdmin: Admin! @auth @guard
 }
 
 extend type Mutation {
