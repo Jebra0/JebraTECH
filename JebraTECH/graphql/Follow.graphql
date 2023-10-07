@@ -4,7 +4,12 @@ extend type Query {
 }
 
 extend type Mutation {
-    AddFollow(follower_id: Int! @rules(apply: ["exists:users,id"]), followed_id: Int @rules(apply: ["exists:users,id"])): Follow! @create
+#///// check if he is writer /////////////////
+    AddFollow(
+        follower_id: Int! @rules(apply: ["required", "int", "exists:users,id"])
+        followed_id: Int @rules(apply: ["required", "int", "exists:users,id"])
+    ): Follow! @create @event(dispatch: "App\\Events\\FollowEvent")
+
     Unfollow(follower_id: Int! @eq @rules(apply: ["exists:users,id"]), followed_id: Int @eq @rules(apply: ["exists:users,id"])): Follow! @forceDelete
 }
 

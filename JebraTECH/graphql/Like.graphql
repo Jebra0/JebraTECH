@@ -4,7 +4,11 @@ extend type Query {
 }
 
 extend type Mutation {
-    AddLike(user_id: Int!  @rules(apply: ["exists:users,id"]), blog_id: Int  @rules(apply: ["exists:blogs,id"])): Like! @create
+    AddLike(
+        user_id: Int!  @rules(apply: ["required", "int", "exists:users,id"])
+        blog_id: Int  @rules(apply: ["required", "int", "exists:blogs,id"])
+    ): Like! @create @event(dispatch: "App\\Events\\LikeEvent")
+
     UnLike(user_id: Int! @eq @rules(apply: ["exists:users,id"]), blog_id: Int @eq @rules(apply: ["exists:blogs,id"])): Like! @forceDelete
 }
 
