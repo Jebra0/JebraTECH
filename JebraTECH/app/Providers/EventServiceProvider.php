@@ -5,6 +5,8 @@ namespace App\Providers;
 use App\Events\BlockWriter;
 use App\Events\AddComment;
 use App\Listeners\AddCommentListener;
+use App\Events\AddReply;
+use App\Listeners\AddReplyListener;
 use App\Events\ReportBlog;
 use App\Listeners\BlockWrittinglistener;
 use App\Listeners\ReportBlogListener;
@@ -29,6 +31,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         AddComment::class=> [
             AddCommentListener::class,
+        ],
+        AddReply::class=> [
+            AddReplyListener::class,
         ],
 
     ];
