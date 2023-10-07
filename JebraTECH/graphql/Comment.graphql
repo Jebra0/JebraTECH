@@ -20,7 +20,7 @@ extend type Mutation {
         content: String! @rules(apply: ["required", "string", "max:500"])
         user_id: Int! @rules(apply: ["required", "exists:users,id"])
         blog_id: Int! @rules(apply: ["required", "exists:blogs,id"])
-    ): Comment @create
+    ): Comment @create @event(dispatch: "App\\Events\\AddComment")
 
     UpdateComment(
         id: ID! @eq @rules(apply: ["required", "exists:comments,id"])
