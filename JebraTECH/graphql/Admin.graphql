@@ -17,15 +17,15 @@ extend type Mutation {
     ): Admin! @create #@guard
 
     UpdateAdmin(
-        id: ID! @rules(apply: ["required", "exists:admins,id"]),
+        id: ID! @eq @rules(apply: ["required", "exists:admins,id"]),
         name: String! @rules(apply: ["required", "min:10", "max:100"]),
         email: String! @rules(apply: ["email"]),
         gender: Boolean @rules(apply: ["max: 1", "Boolean"]), # one for women zero for nen
         password: String @rules(apply: ["min:8", "max:100"]),
-    ): Admin!
+    ): Admin! @update
 
     UpdateAdminPhoto(
-        id: ID! @rules(apply: ["required", "exists:admins,id"]),
+        id: ID! @eq @rules(apply: ["required", "exists:admins,id"]),
         photo: Upload! @rules(apply: ["required", "image", "max: 3060"])
     ): Admin!
 

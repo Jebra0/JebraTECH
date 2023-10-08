@@ -1,9 +1,13 @@
 extend type Query {
+
     #this returns the ips that Likes that blog and the front end pro get the data of each one with User(id) query.
-    GetLikesForBlog(blog_id: Int! @eq @rules(apply: ["exists:blogs,id"])): [Like!]! @paginate
+    GetLikesForBlog(
+        blog_id: Int! @eq @rules(apply: ["exists:blogs,id"])
+    ): [Like!]! @paginate
 }
 
 extend type Mutation {
+
     AddLike(
         user_id: Int!  @rules(apply: ["required", "int", "exists:users,id"])
         blog_id: Int  @rules(apply: ["required", "int", "exists:blogs,id"])

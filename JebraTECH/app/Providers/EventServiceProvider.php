@@ -9,6 +9,7 @@ use App\Events\BlockWriter;
 use App\Events\AddComment;
 use App\Events\AddReply;
 use App\Events\ReportBlog;
+use App\Events\CreatBlogEvent;
 
 use App\Listeners\LikeListener;
 use App\Listeners\ShareListener;
@@ -17,6 +18,7 @@ use App\Listeners\AddReplyListener;
 use App\Listeners\AddCommentListener;
 use App\Listeners\BlockWrittinglistener;
 use App\Listeners\ReportBlogListener;
+use App\Listeners\CreatBlogListener;
 
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -51,6 +53,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         FollowEvent::class=> [
             FollowListener::class,
+        ],
+        CreatBlogEvent::class=> [
+            CreatBlogListener::class,
         ],
 
     ];

@@ -4,15 +4,17 @@ extend type Query {
 }
 
 extend type Mutation {
+
     AddTag(
         name: String! @rules(apply: ["required", "string", "max:500"])
-    ): Tag!
+    ): Tag! @create
 
     UpdateTag(
-        id: ID! @rules(apply: ["required", "exists:tags,id"])
+        id: ID! @eq @rules(apply: ["required", "exists:tags,id"])
         name: String! @rules(apply: ["required", "string", "max:500"])
-    ): Tag!
+    ): Tag! @update
 
+    DeleteTag(id: ID! @eq): Tag! @delete
 
 }
 

@@ -1,7 +1,9 @@
 extend type Query {
 
     GetAllCategories: [Category!]! @paginate(defaultCount: 10)
+
     GetCategory(id: ID! @eq @rules(apply: ["required", "exists:categories,id"])): Category! @find
+
     SearchCategories(
         name: String! @rules(apply: ["required", "string", "max:250"])  @where(operator: "like") #you should write the hole title
     ): [Category!]! @paginate(defaultCount: 10)

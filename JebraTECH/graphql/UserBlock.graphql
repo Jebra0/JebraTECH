@@ -1,5 +1,5 @@
-
 extend type Mutation {
+
 # ////////// if u use @create directive u have to write the correct column names in the mutation body
     AddBlock(
         user_id: Int! @rules(apply: ["required", "int", "exists:users,id"]),

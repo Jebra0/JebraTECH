@@ -40,7 +40,7 @@ extend type Mutation {
         category_id: Int!  @rules(apply: ["required", "exists:categories,id"])
         writter_id: Int! @rules(apply: ["required", "exists:users,id" ])
         scheduling_date: DateTime @rules(apply: ["date", "after:now"] )
-    ): Blog! @create #@guard
+    ): Blog! @create @event(dispatch: "App\\Events\\CreatBlogEvent") #@guard
 
     UpdateBlog(
         id: ID! @eq @rules(apply: ["required", "exists:blogs,id"])

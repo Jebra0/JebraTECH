@@ -10,13 +10,13 @@ extend type Mutation {
     AddBlogTags(
         blog_id: Int! @rules(apply: ["required", "exists:blogs,id"])
         tag_id: Int! @rules(apply: ["required", "exists:tags,id"])
-    ): BlogTag!
+    ): BlogTag! @create
 
     UpdateBlogTags(
-        id: ID! @rules(apply: ["required", "exists:Blog_tags,id"])
+        id: ID! @eq @rules(apply: ["required", "exists:Blog_tags,id"])
         blog_id: Int! @rules(apply: ["required", "exists:blogs,id"])
         tag_id: Int! @rules(apply: ["required", "exists:tags,id"])
-    ): BlogTag!
+    ): BlogTag! @update
 
     DeleteBlogTags(id: ID! @whereKey): BlogTag! @forceDelete
 }

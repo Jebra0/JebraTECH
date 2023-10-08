@@ -1,6 +1,9 @@
 extend type Query {
+
     #this returns the ips that shares that blog and the front end pro get the data of each one with User(id) query.
-    GetSharesForBlog(blog_id: Int! @eq @rules(apply: ["exists:blogs,id"])): [Share!]! @paginate
+    GetSharesForBlog(
+        blog_id: Int! @eq @rules(apply: ["exists:blogs,id"])
+    ): [Share!]! @paginate
 }
 
 extend type Mutation {

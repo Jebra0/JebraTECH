@@ -1,9 +1,12 @@
 extend type Query {
     #this returns the ips that follow that user and the front end pro get the data of each one with User(id) query.
-    GetFollowersForUser(followed_id: Int! @eq @rules(apply: ["exists:users,id"])): [Follow!]! @paginate
+    GetFollowersForUser(
+        followed_id: Int! @eq @rules(apply: ["exists:users,id"])
+    ): [Follow!]! @paginate
 }
 
 extend type Mutation {
+
 #///// check if he is writer /////////////////
     AddFollow(
         follower_id: Int! @rules(apply: ["required", "int", "exists:users,id"])

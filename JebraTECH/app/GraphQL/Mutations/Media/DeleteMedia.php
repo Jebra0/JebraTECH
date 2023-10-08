@@ -15,7 +15,7 @@ final class DeleteMedia
         if($media){
             $media->forceDelete();
             Storage::delete($media->image); // to delete the old image
-            return "Image deleted successfully";
+            return $media;
         }else{
             throw ValidationException::withMessages([
                 'blog' => ['Blog not found '],
