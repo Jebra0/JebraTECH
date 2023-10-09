@@ -1,4 +1,4 @@
-# JebraTECH
+#<center><h1> JebraTECH </h1></center>
 ## About the project
 ##### Blogs system to write, read and interact with blogs, writers and Admins of the system.
 
