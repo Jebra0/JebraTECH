@@ -1,4 +1,4 @@
-<center><h1> JebraTECH </h1></center>
+# Advanced Blog System
 ## About the project
 ##### Blogs system to write, read and interact with blogs, writers and Admins of the system.
 
