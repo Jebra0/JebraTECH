@@ -4,9 +4,9 @@ extend type Mutation {
     AddBlock(
         user_id: Int! @rules(apply: ["required", "int", "exists:users,id"]),
         user_blocked_id:  Int! @rules(apply: ["required", "int", "exists:users,id" ] ), #check if he is writer
-    ): UserBlock! @create  @event(dispatch: "App\\Events\\BlockWriter")
+    ): UserBlock! @create  @event(dispatch: "App\\Events\\BlockWriter") @guard
 
-    DeleteBlock(id: ID! @eq):UserBlock! @delete
+    DeleteBlock(id: ID! @eq):UserBlock! @delete @guard
 }
 
 type UserBlock {

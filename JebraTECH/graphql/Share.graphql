@@ -11,9 +11,12 @@ extend type Mutation {
     AddShare(
         user_id: Int!  @rules(apply: ["required", "int", "exists:users,id"])
         blog_id: Int  @rules(apply: ["required", "int", "exists:blogs,id"])
-    ): Share! @create @event(dispatch: "App\\Events\\ShareEvent")
+    ): Share! @create @event(dispatch: "App\\Events\\ShareEvent") @guard
 
-    UnShare(user_id: Int! @eq @rules(apply: ["exists:users,id"]), blog_id: Int @eq @rules(apply: ["exists:blogs,id"])): Share! @forceDelete
+    UnShare(
+        user_id: Int! @eq @rules(apply: ["exists:users,id"])
+        blog_id: Int @eq @rules(apply: ["exists:blogs,id"])
+    ): Share! @forceDelete @guard
 }
 
 

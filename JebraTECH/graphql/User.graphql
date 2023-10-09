@@ -18,7 +18,7 @@ extend type Mutation {
         name: String! @rules(apply: ["required", "min:10", "max:100"]),
         email: String! @rules(apply: ["email"]),
         password: String @rules(apply: ["min:8", "max:100"])
-    ): User! @create #@guard
+    ): User! @create @guard
 
 
     BeWriter(
@@ -30,13 +30,17 @@ extend type Mutation {
         name: String!  @rules(apply: ["required", "min:10", "max:100"]),  #email verification column did not changed
         email: String!  @rules(apply: ["required", "min:10", "max:100", "email"]),
         password: String!  @rules(apply: ["required", "min:8", "max:100"])
-    ): User! @update
+    ): User! @update @guard
 
-    DeleteUser(id: ID! @eq @rules(apply: ["required", "exists:users,id"])): User! @delete
+    DeleteUser(
+        id: ID! @eq @rules(apply: ["required", "exists:users,id"])
+    ): User! @delete @guard
 
 #    RestoreUser(id: ID! @eq @rules(apply: ["required", "exists:users,id"])): User! @restore  # next version soon
 
-    ForceDeleteUser(id: ID! @eq @rules(apply: ["required", "exists:users,id"])): User! @forceDelete
+    ForceDeleteUser(
+        id: ID! @eq @rules(apply: ["required", "exists:users,id"])
+    ): User! @forceDelete @guard
 }
 
 type User {

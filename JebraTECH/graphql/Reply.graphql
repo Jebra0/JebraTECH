@@ -9,14 +9,14 @@ extend type Mutation {
         content: String! @rules(apply: ["required",  "string", "max:500"])
         comment_id: Int! @rules(apply: ["required", "int", "exists:comments,id"])
         user_id: Int! @rules(apply: ["required", "int", "exists:users,id"])
-    ): Reply! @create @event(dispatch: "App\\Events\\AddReply")
+    ): Reply! @create @event(dispatch: "App\\Events\\AddReply") @guard
 
     UpdateReply(
         id: ID! @eq @rules(apply: ["required", "int", "exists:comments,id"])
         content: String! @rules(apply: ["required",  "string", "max:500"])
-    ): Reply! @update
+    ): Reply! @update @guard
 
-    DeleteReply(id: ID! @eq): Reply! @forceDelete
+    DeleteReply(id: ID! @eq): Reply! @forceDelete @guard
 }
 
 type Reply{

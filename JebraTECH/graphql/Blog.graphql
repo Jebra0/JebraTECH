@@ -16,11 +16,11 @@ extend type Query {
 
     GetUserUnvisibleBlogs(
         writter_id: Int! @eq @rules(apply: ["required", "exists:users,id"])
-    ): [Blog!]! @all @where(key: "is_hidden", value: 1) @orderBy(column: "created_at", direction: DESC)
+    ): [Blog!]! @all @where(key: "is_hidden", value: 1) @orderBy(column: "created_at", direction: DESC) @guard
 
     GetUserUnconfirmedBlogs(
         writter_id: Int! @eq @rules(apply: ["required", "exists:users,id"])
-    ): [Blog!]! @all @where(key: "is_confirmed", value: 0) @orderBy(column: "created_at", direction: DESC)
+    ): [Blog!]! @all @where(key: "is_confirmed", value: 0) @orderBy(column: "created_at", direction: DESC) @guard
 
     SearchBlog(
         data: String! @rules(apply: ["String", "required", "max: 500"]),
@@ -40,7 +40,7 @@ extend type Mutation {
         category_id: Int!  @rules(apply: ["required", "exists:categories,id"])
         writter_id: Int! @rules(apply: ["required", "exists:users,id" ])
         scheduling_date: DateTime @rules(apply: ["date", "after:now"] )
-    ): Blog! @create @event(dispatch: "App\\Events\\CreatBlogEvent") #@guard
+    ): Blog! @create @event(dispatch: "App\\Events\\CreatBlogEvent") @guard
 
     UpdateBlog(
         id: ID! @eq @rules(apply: ["required", "exists:blogs,id"])
@@ -49,13 +49,13 @@ extend type Mutation {
         description: String! @rules(apply: ["required", "string", "max:500"])
         is_hidden: Boolean @rules(apply: ["boolean"])
         category_id: Int!  @rules(apply: ["required", "exists:categories,id"])
-    ): Blog!  @update #@guard
+    ): Blog!  @update @guard
 
-    DeleteBlog(id: Int! @eq @rules(apply: ["required", "exists:blogs,id"])): Blog! @delete
+    DeleteBlog(id: Int! @eq @rules(apply: ["required", "exists:blogs,id"])): Blog! @delete @guard
 
-    RestorBlog(id: Int! @rules(apply: ["required", "exists:blogs,id"])): Blog!
+    RestorBlog(id: Int! @rules(apply: ["required", "exists:blogs,id"])): Blog! @guard
 
-    ForceDeleteBlog(id: Int! @eq @rules(apply: ["required", "exists:blogs,id"])): Blog! @forceDelete
+    ForceDeleteBlog(id: Int! @eq @rules(apply: ["required", "exists:blogs,id"])): Blog! @forceDelete @guard
 
     ShowBlog(
         id: Int! @eq @rules(apply: ["required", "exists:blogs,id"])
@@ -63,7 +63,7 @@ extend type Mutation {
 
     HideBlog(
         id: Int! @rules(apply: ["required", "exists:blogs,id"])
-    ): Blog!
+    ): Blog! @guard
 
 }
 

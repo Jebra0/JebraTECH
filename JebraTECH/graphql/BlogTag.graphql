@@ -10,15 +10,15 @@ extend type Mutation {
     AddBlogTags(
         blog_id: Int! @rules(apply: ["required", "exists:blogs,id"])
         tag_id: Int! @rules(apply: ["required", "exists:tags,id"])
-    ): BlogTag! @create
+    ): BlogTag! @create @guard
 
     UpdateBlogTags(
         id: ID! @eq @rules(apply: ["required", "exists:Blog_tags,id"])
         blog_id: Int! @rules(apply: ["required", "exists:blogs,id"])
         tag_id: Int! @rules(apply: ["required", "exists:tags,id"])
-    ): BlogTag! @update
+    ): BlogTag! @update @guard
 
-    DeleteBlogTags(id: ID! @whereKey): BlogTag! @forceDelete
+    DeleteBlogTags(id: ID! @whereKey): BlogTag! @forceDelete @guard
 }
 
 type BlogTag {

@@ -3,14 +3,14 @@ extend type Query {
     #this returns the ips that read that blog and the front end pro get the data of each one with User(id) query.
     GetUsersWhoReadThatBlog(
         blog_id: Int! @eq @rules(apply: ["exists:blogs,id"])
-    ): ReadBy! @paginate
+    ): ReadBy! @paginate @guard
 }
 
 extend type Mutation {
     Read(
         user_id: Int!  @rules(apply: ["exists:users,id"])
         blog_id: Int  @rules(apply: ["exists:blogs,id"])
-    ): ReadBy! @create
+    ): ReadBy! @create @guard
 
 }
 

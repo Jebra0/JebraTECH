@@ -8,12 +8,12 @@ extend type Mutation {
 #////////////if it not hidden//////////
         user_id: Int! @rules(apply: ["required", "int", "exists:users,id"]),
         blog_id: Int! @rules(apply: ["required", "int", "exists:blogs,id"]),
-    ):UserReport! @create @event(dispatch: "App\\Events\\ReportBlog")
+    ):UserReport! @create @event(dispatch: "App\\Events\\ReportBlog") @guard
 
     DeleteReport(
         user_id: Int! @eq @rules(apply: ["exists:users,id"])
         blog_id: Int @eq @rules(apply: ["exists:blogs,id"])
-    ): UserReport! @forceDelete
+    ): UserReport! @forceDelete @guard
 
 }
 

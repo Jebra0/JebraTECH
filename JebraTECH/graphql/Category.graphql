@@ -14,24 +14,24 @@ extend type Mutation {
 
     AddCategory(
         name: String! @rules(apply: ["required", "string", "max:250"])
-    ): Category! @create
+    ): Category! @create @guard
 
     UpdateCategory(
         id: ID! @rules(apply: ["required", "exists:categories,id"])
         name: String! @rules(apply: ["required", "string", "max:250"])
-    ): Category! @update
+    ): Category! @update @guard
 
     DeleteCategory(
         id: ID! @eq @rules(apply: ["required", "exists:categories,id"])
-    ): Category! @delete
+    ): Category! @delete @guard
 
     RestorCategory(
         id: ID! @rules(apply: ["required", "exists:categories,id"])
-    ): Category!
+    ): Category! @guard
 
     ForceDeleteCategory(
         id: ID! @eq @rules(apply: ["required", "exists:categories,id"])
-    ): Category! @forceDelete
+    ): Category! @forceDelete @guard
 }
 
 type Category {

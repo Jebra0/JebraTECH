@@ -7,14 +7,14 @@ extend type Mutation {
 
     AddTag(
         name: String! @rules(apply: ["required", "string", "max:500"])
-    ): Tag! @create
+    ): Tag! @create @guard
 
     UpdateTag(
         id: ID! @eq @rules(apply: ["required", "exists:tags,id"])
         name: String! @rules(apply: ["required", "string", "max:500"])
-    ): Tag! @update
+    ): Tag! @update @guard
 
-    DeleteTag(id: ID! @eq): Tag! @delete
+    DeleteTag(id: ID! @eq): Tag! @delete @guard
 
 }
 

@@ -14,7 +14,7 @@ extend type Mutation {
         email: String! @rules(apply: ["email"]),
         gender: Boolean @rules(apply: ["max: 1", "Boolean"]), # one for women zero for nen
         password: String @rules(apply: ["min:8", "max:100"]),
-    ): Admin! @create #@guard
+    ): Admin! @create @guard
 
     UpdateAdmin(
         id: ID! @eq @rules(apply: ["required", "exists:admins,id"]),
@@ -22,20 +22,20 @@ extend type Mutation {
         email: String! @rules(apply: ["email"]),
         gender: Boolean @rules(apply: ["max: 1", "Boolean"]), # one for women zero for nen
         password: String @rules(apply: ["min:8", "max:100"]),
-    ): Admin! @update
+    ): Admin! @update @guard
 
     UpdateAdminPhoto(
         id: ID! @eq @rules(apply: ["required", "exists:admins,id"]),
         photo: Upload! @rules(apply: ["required", "image", "max: 3060"])
-    ): Admin!
+    ): Admin! @guard
 
     DissactivateAdmin(
         id: ID! @rules(apply: ["required", "exists:admins,id"]),
-    ):Admin!
+    ):Admin! @guard
 
     ActivateAdmin(
         id: ID! @rules(apply: ["required", "exists:admins,id"]),
-    ):Admin!
+    ):Admin! @guard
 
 }
 

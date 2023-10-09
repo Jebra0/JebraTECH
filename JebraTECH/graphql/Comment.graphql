@@ -20,14 +20,14 @@ extend type Mutation {
         content: String! @rules(apply: ["required", "string", "max:500"])
         user_id: Int! @rules(apply: ["required", "exists:users,id"])
         blog_id: Int! @rules(apply: ["required", "exists:blogs,id"])
-    ): Comment @create @event(dispatch: "App\\Events\\AddComment")
+    ): Comment @create @event(dispatch: "App\\Events\\AddComment") @guard
 
     UpdateComment(
         id: ID! @eq @rules(apply: ["required", "exists:comments,id"])
         content: String! @rules(apply: ["required",  "string", "max:500"])
-    ): Comment @update
+    ): Comment @update @guard
 
-    DeleteComment(id: ID! @eq): Comment @forceDelete
+    DeleteComment(id: ID! @eq): Comment @forceDelete @guard
 }
 type Comment{
     id: ID!
